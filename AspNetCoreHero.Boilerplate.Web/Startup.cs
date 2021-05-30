@@ -82,10 +82,14 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(
-                   name: "Admin",
-                   areaName: "Admin",
-                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapAreaControllerRoute(
+                //   name: "Admin",
+                //   areaName: "Admin",
+                //    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
