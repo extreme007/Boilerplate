@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Shared\Components\Menu\**" />
+    <Content Remove="Views\Shared\Components\Menu\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\Menu\**" />
+    <None Remove="Views\Shared\Components\Menu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
@@ -26,14 +33,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Catalog\Data\" />
-    <Folder Include="Areas\Dashboard\Data\" />
-    <Folder Include="Areas\Dashboard\Models\" />
-    <Folder Include="Areas\Settings\Data\" />
-    <Folder Include="Areas\Settings\Models\" />
-    <Folder Include="Areas\Settings\Views\" />
+    <Folder Include="Areas\Admin\Views\Shared\Components\Menu\" />
     <Folder Include="Log\" />
-    <Folder Include="Views\Shared\Components\Menu\" />
   </ItemGroup>
 
   <ItemGroup>
