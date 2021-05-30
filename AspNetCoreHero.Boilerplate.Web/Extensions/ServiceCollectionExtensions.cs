@@ -39,9 +39,10 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             {
                 var cultures = new List<CultureInfo> {
                     new CultureInfo("en"),
-                    new CultureInfo("ar"),
-                    new CultureInfo("fr"),
-                    new CultureInfo("fa")
+                    new CultureInfo("vi")
+                    //new CultureInfo("ar"),
+                    //new CultureInfo("fr"),
+                    //new CultureInfo("fa")
                 };
                 options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
                 options.SupportedCultures = cultures;

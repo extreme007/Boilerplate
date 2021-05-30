@@ -20,21 +20,13 @@
         <span class="mr-2 d-none d-lg-inline text-gray-600 small">
             @if (requestCulture != null)
             {
-                @if (requestCulture.RequestCulture.UICulture.Name == "en")
+                if (requestCulture.RequestCulture.UICulture.Name == "en")
                 {
                     <i class="flag-icon flag-icon-gb"></i>
                 }
-                else if (requestCulture.RequestCulture.UICulture.Name == "ar")
+                else if (requestCulture.RequestCulture.UICulture.Name == "vi")
                 {
-                    <i class="flag-icon flag-icon-sa"></i>
-                }
-                else if (requestCulture.RequestCulture.UICulture.Name == "fr")
-                {
-                    <i class="flag-icon flag-icon-fr"></i>
-                }
-                else if (requestCulture.RequestCulture.UICulture.Name == "fa")
-                {
-                    <i class="flag-icon flag-icon-ir"></i>
+                    <i class="flag-icon flag-icon-vn"></i>
                 }
                 @requestCulture.RequestCulture.UICulture.NativeName
             }
@@ -59,17 +51,9 @@
                     {
                         <i class="flag-icon flag-icon-gb"></i>
                     }
-                    else if (culture.Value == "ar")
+                    else if (culture.Value == "vi")
                     {
-                        <i class="flag-icon flag-icon-sa"></i>
-                    }
-                    else if (culture.Value == "fr")
-                    {
-                        <i class="flag-icon flag-icon-fr"></i>
-                    }
-                    else if (culture.Value == "fa")
-                    {
-                        <i class="flag-icon flag-icon-ir"></i>
+                        <i class="flag-icon flag-icon-vn"></i>
                     }
 
                     @culture.Text

@@ -118,78 +118,78 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions" xml:space="preserve">
-    <value>اکشن ها</value>
+    <value>Actions</value>
   </data>
   <data name="Already have an account? Login!" xml:space="preserve">
-    <value>!اگر قبلا ثبت نام کرده اید، وارد شوید</value>
+    <value>Already have an account? Login!</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>لغو</value>
+    <value>Cancel</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>تایید</value>
+    <value>Confirm Password</value>
   </data>
   <data name="Create an Account!" xml:space="preserve">
-    <value>ایجاد حساب کاربری</value>
+    <value>Create an Account!</value>
   </data>
   <data name="Dark Mode" xml:space="preserve">
-    <value>تم تاریک</value>
+    <value>Dark Mode</value>
   </data>
   <data name="Default Credentials" xml:space="preserve">
-    <value>اعتبارات پیش فرض</value>
+    <value>Default Credentials</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>ایمیل</value>
+    <value>Email</value>
   </data>
   <data name="Email Address" xml:space="preserve">
-    <value>آدرس ایمیل</value>
+    <value>Email Address</value>
   </data>
   <data name="First Name" xml:space="preserve">
-    <value>نام</value>
+    <value>First Name</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>نام</value>
+    <value>First Name</value>
   </data>
   <data name="Forgot Password?" xml:space="preserve">
-    <value>رمز عبور را فراموش کرده اید؟</value>
+    <value>Forgot Password?</value>
   </data>
   <data name="Last Name" xml:space="preserve">
-    <value>نام خانوادگی</value>
+    <value>Last Name</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>نام خانوادگی</value>
+    <value>Last Name</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>ورود</value>
+    <value>Đăng nhập</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>خروج</value>
+    <value>Thoát</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>رمز عبور</value>
+    <value>Password</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>پروفایل</value>
+    <value>Profile</value>
   </data>
   <data name="Ready to Leave?" xml:space="preserve">
-    <value>آماده خروج هستید؟</value>
+    <value>Ready to Leave?</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>ثبت</value>
+    <value>Đăng ký</value>
   </data>
   <data name="Register Account" xml:space="preserve">
-    <value>ثبت حساب کاربری</value>
+    <value>Đăng ký tài khoản</value>
   </data>
   <data name="Remember Me" xml:space="preserve">
-    <value>مرا به خاطر داشته باش</value>
+    <value>Remember Me</value>
   </data>
   <data name="Repeat Password" xml:space="preserve">
-    <value>تکرار رمز عبور</value>
+    <value>Nhập lại mật khẩu</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>ذخیره</value>
+    <value>Save</value>
   </data>
   <data name="Select Logout below if you are ready to end your current session." xml:space="preserve">
-    <value>اگر آماده پایان دادن به جلسه فعلی هستید گزینه خروج را در زیر انتخاب کنید</value>
+    <value>Select Logout below if you are ready to end your current session.</value>
   </data>
 </root>

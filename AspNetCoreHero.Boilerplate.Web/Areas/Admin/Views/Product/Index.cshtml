@@ -8,7 +8,7 @@
     <div class="col-sm-12" style="padding:20px">
         @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Create)).Result.Succeeded)
         {
-            <a onclick="jQueryModalGet('/catalog/product/OnGetCreateOrEdit','Create Product')" class="btn bg-success">
+            <a onclick="jQueryModalGet('/admin/product/OnGetCreateOrEdit','Create Product')" class="btn bg-success">
                 <i class="fa fa-plus-square"></i> Create
             </a>
         }
@@ -33,7 +33,7 @@
             });
         });
         function loadData() {
-            $('#viewAll').load('/catalog/product/LoadAll');
+            $('#viewAll').load('/admin/product/LoadAll');
         }
     </script>
 }

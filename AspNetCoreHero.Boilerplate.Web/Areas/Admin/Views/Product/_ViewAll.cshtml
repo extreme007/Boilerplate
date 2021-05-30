@@ -46,7 +46,7 @@
                         <div class="dropdown-menu shadow animated--grow-in">
                             @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Edit)).Result.Succeeded)
                             {
-                                <a onclick="jQueryModalGet('/catalog/product/OnGetCreateOrEdit?id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
+                                <a onclick="jQueryModalGet('/admin/product/OnGetCreateOrEdit?id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
 
                             }
                             @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Delete)).Result.Succeeded)

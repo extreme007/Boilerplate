@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Culture
+namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Views.Shared.Components.Logout
 {
-    public class CultureViewComponent : ViewComponent
+    public class LogoutViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

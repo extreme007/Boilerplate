@@ -50,7 +50,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             model.RoleClaims = _mapper.Map<List<RoleClaimsViewModel>>(allPermissions);
             ViewData["Title"] = $"Permissions for {role.Name} Role";
             ViewData["Caption"] = $"Manage {role.Name} Role Permissions.";
-            _notify.Success($"Updated Claims / Permissions for Role '{role.Name}'");
+            //_notify.Success($"Updated Claims / Permissions for Role {role.Name}");
             return View(model);
         }
 
@@ -68,7 +68,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             {
                 await _roleManager.AddPermissionClaim(role, claim.Value);
             }
-            _notify.Success($"Updated Claims / Permissions for Role '{role.Name}'");
+            _notify.Success($"Updated Claims / Permissions for Role {role.Name}");
             //var user = await _userManager.GetUserAsync(User);
             //await _signInManager.RefreshSignInAsync(user);
 
