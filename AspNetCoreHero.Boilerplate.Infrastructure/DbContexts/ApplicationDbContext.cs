@@ -1,7 +1,7 @@
 ﻿using AspNetCoreHero.Abstractions.Domain;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.EntityFrameworkCore.AuditTrail;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
@@ -23,6 +23,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 

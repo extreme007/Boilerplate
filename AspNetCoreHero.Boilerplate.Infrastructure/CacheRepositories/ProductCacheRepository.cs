@@ -1,6 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
 using AspNetCoreHero.ThrowR;

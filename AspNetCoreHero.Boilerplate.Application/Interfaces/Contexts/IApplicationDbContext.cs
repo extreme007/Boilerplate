@@ -1,4 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+﻿using AspNetCoreHero.Boilerplate.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Data;
@@ -17,5 +17,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
         DbSet<Product> Products { get; set; }
+        DbSet<Article> Articles { get; set; }
     }
 }

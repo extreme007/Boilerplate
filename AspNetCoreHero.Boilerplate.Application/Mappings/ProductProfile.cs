@@ -2,7 +2,7 @@
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllPaged;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetById;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AutoMapper;
 
 namespace AspNetCoreHero.Boilerplate.Application.Mappings

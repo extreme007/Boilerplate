@@ -1,31 +1,36 @@
-﻿
-
+﻿@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Header;
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Footer;
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.NavigationBar;
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
+<!-- Mirrored from cyclonethemes.com/demo/html/blogmag/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Apr 2020 02:53:25 GMT -->
 <head>
-    <meta charset="utf-8">
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AspNetCoreHero.Boilerplate</title>
+
+    <title>BlogMag - A Complete blog & magazine HTML Template</title>
     <partial name="_Styles" />
 </head>
-<body class="hold-transition sidebar-mini">
+<body>
 
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section"></div>
+    <!-- Header -->
+    @(await Component.InvokeAsync<HeaderViewComponent>())
+    <!-- Header Ends -->
+    <!-- Navigation Bar -->
+    @(await Component.InvokeAsync<NavigationBarViewComponent>())
+    <!-- Navigation Bar Ends -->
+    @RenderBody()
+   
+    <!-- Footer -->
+    @(await Component.InvokeAsync<FooterViewComponent>())
+    <!-- Footer Ends -->
+    <!-- back to top start -->
+    <div id="back-to-top">
+        <a href="#"></a>
     </div>
-    <div class="wrapper">
-        <div class="content-wrapper" id="contentWrapper">
-            <div class="content">
-                <div class="container-fluid">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
-    </div>
+
     <partial name="_Scripts" />
-    @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
 </html>

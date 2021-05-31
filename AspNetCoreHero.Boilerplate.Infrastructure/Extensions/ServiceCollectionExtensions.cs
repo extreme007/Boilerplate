@@ -28,6 +28,10 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
             services.AddTransient<IProductCacheRepository, ProductCacheRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IBrandCacheRepository, BrandCacheRepository>();
+            services.AddTransient<IArticleRepository, ArticleRepository>();
+            services.AddTransient<IArticleCacheRepository, ArticleCacheRepository>();
+            services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
+            services.AddTransient<IArticleCategoryCacheRepository, ArticleCategoryCacheRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

@@ -1,5 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Generic;

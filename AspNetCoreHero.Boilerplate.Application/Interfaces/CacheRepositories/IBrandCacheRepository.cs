@@ -1,4 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+﻿using AspNetCoreHero.Boilerplate.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

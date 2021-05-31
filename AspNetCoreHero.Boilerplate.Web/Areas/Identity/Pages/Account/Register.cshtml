@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@ViewData["Title"]</title>
-    <partial name="_Styles" />
+    <partial name="_AdminStyles" />
 </head>
 <body>
     <nav id="navigationBar" class="main-header navbar navbar-expand navbar-light" style="margin:0 !important">
@@ -39,7 +39,7 @@
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-                                <div class="col-lg-5 d-none d-lg-block" style=" background: url('/images/bg-register.jpg');
+                                <div class="col-lg-5 d-none d-lg-block" style=" background: url('/admin/images/bg-register.jpg');
         background-position: center;
         background-size: cover;
     "></div>
@@ -78,9 +78,7 @@
                                                 @localizer["Register Account"]
                                             </button>
                                         </form>
-                                        <script type="text/javascript" language=javascript>
-                                            $.validator.unobtrusive.parse(document);
-                                        </script>
+
                                         <hr>
                                         <div class="text-center">
                                             <a class="small" asp-area="Identity" asp-page="/account/forgotpassword"> @localizer["Forgot Password?"]</a>
@@ -97,7 +95,11 @@
             </div>
         </div>
     </div>
-    <partial name="_Scripts" />
+    <partial name="_AdminScripts" />
     @await Component.InvokeAsync("Notyf")
+
+    <script type="text/javascript" language=javascript>
+        $.validator.unobtrusive.parse(document);
+    </script>
 </body>
 </html>

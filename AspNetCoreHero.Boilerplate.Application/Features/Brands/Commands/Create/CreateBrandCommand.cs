@@ -1,5 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Results;
 using AutoMapper;
 using MediatR;

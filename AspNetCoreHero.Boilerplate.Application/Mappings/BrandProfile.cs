@@ -1,7 +1,7 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AutoMapper;
 
 namespace AspNetCoreHero.Boilerplate.Application.Mappings
