@@ -28,7 +28,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         public IActionResult Index()
         {
             return View();

@@ -8,6 +8,7 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using System.Net;
 using System.Reflection;
 
 namespace AspNetCoreHero.Boilerplate.Web
@@ -33,7 +35,7 @@ namespace AspNetCoreHero.Boilerplate.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            //services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddNotyf(o =>
             {
@@ -79,6 +81,7 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseMultiLingualFeature();
             app.UseRouting();
             app.UseAuthentication();
+  
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

@@ -38,7 +38,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             return null;
         }
 
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
             var brandsResponse = await _mediator.Send(new GetAllBrandsCachedQuery());

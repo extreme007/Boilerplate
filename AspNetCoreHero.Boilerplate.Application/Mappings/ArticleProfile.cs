@@ -12,9 +12,10 @@ namespace AspNetCoreHero.Boilerplate.Application.Mappings
         public ArticleProfile()
         {
             CreateMap<CreateArticleCommand, Article>().ReverseMap();
-            CreateMap<GetArticleByIdResponse, Article>().ReverseMap();
+            CreateMap<GetArticleByCategoryIdResponse, Article>().ReverseMap();
             CreateMap<GetAllArticleCachedResponse, Article>().ReverseMap();
             CreateMap<GetAllArticleResponse, Article>().ReverseMap();
+            CreateMap<GetArticleByIdResponse, Article>().ReverseMap();
         }
     }
 }
