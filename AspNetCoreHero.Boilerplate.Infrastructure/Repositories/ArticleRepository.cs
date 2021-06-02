@@ -2,6 +2,7 @@
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,9 +34,17 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             return await _repository.Entities.Where(p => p.Id == articleId).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Article>> GetListAsync()
+        public async Task<List<Article>> GetListAsync(string includeProperties = "")
         {
-            return await _repository.Entities.ToListAsync();
+            var queryable = _repository.Entities.AsQueryable();
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (string IncludeProperty in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    queryable = queryable.Include(includeProperties);
+                }
+            }
+            return await queryable.ToListAsync();
         }
 
         public async Task<int> InsertAsync(Article article)

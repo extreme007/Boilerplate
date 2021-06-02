@@ -9,7 +9,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
     {
         IQueryable<Article> Article { get; }
 
-        Task<List<Article>> GetListAsync();
+        Task<List<Article>> GetListAsync(string includeProperties = "");
 
         Task<Article> GetByIdAsync(int articleId);
 

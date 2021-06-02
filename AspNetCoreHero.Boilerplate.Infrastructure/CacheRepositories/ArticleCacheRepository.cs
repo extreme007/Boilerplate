@@ -41,7 +41,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             var articleList = await _distributedCache.GetAsync<List<Article>>(cacheKey);
             if (articleList == null)
             {
-                articleList = await _articleRepository.GetListAsync();
+                articleList = await _articleRepository.GetListAsync("ArticleCategory");
                 await _distributedCache.SetAsync(cacheKey, articleList);
             }
             return articleList;

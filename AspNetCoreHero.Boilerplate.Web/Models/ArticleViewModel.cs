@@ -30,5 +30,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
         public bool IsPublished { get; set; }
+        public NavigationViewModel ArticleCategory { get; set; }
     }
 }

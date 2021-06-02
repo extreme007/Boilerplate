@@ -1,0 +1,42 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Extensions
+@using AspNetCoreHero.Boilerplate.Web.Models
+@model IEnumerable<ArticleViewModel>
+@{
+    
+}
+<section class="latest_posts">
+    <div class="container">
+        <div class="section-title">
+            <h2>@ViewData["Title"].ToString()</h2>
+        </div>
+        @foreach (var item in Model.Batch(3))
+        {
+            <div class="row" style="margin:20px 0;">
+                @foreach (var subItem in item)
+                {
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="list-item grid-item">
+                            <div class="list-image">
+                                <img src="@subItem.ThumbImage" alt="Image">
+                                <div class="image-overlay"></div>
+                            </div>
+                            <div class="list-content">
+                                <h3><a href="@string.Format("/{0}/{1}-{2}",subItem.ArticleCategory.Slug,subItem.Slug,subItem.Id)">@subItem.Title</a></h3>
+                                <a href="#" class="tag tag-blue">@subItem.SourceName</a>
+                                <p>@subItem.Description</p>
+                                <div class="author-detail">
+                                    @*<p><a href="#"><i class="icon-profile-male"></i> John Doe</a></p>*@
+                                    <p><i class="icon-clock"></i> @subItem.PostedDatetime</p>
+                                    <p><a href="#"><i class="icon-chat"></i> @subItem.CommentCount comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+
+    </div>
+</section>
+<!-- Listing Ends -->

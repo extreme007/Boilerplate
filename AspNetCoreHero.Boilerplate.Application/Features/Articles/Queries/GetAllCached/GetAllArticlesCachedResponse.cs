@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
+using System;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached
 {
@@ -27,5 +28,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
         public bool IsPublished { get; set; }
+        public GetAllArticleCategoryCachedResponse ArticleCategory { get; set; }
     }
 }

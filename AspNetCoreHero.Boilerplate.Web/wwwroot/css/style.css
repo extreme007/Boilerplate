@@ -1466,6 +1466,7 @@ section.most-viewed{
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px dashed #ddd;
+  width:100%;
 }
 .item-small:last-child{
   margin-bottom: 0;

@@ -12,11 +12,13 @@
                 <li is-active-route>
                     @if (item.ParentId == null)
                     {
-                        <a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>
+                        @*<a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>*@
+                        <a href="/@item.Slug">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>
                     }
                     else
                     {
-                        <a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper()</a>
+                        @*<a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper()</a>*@
+                        <a href="/@item.Slug">@item.Title.ToUpper()</a>
                     }
                     <ul class="sub-menu">
                         @{ await RenderChildren(childItems); }
@@ -25,7 +27,8 @@
             }
             else
             {
-                <li is-active-route><a asp-controller="Category" asp-action="Index" asp-route-Id="@item.Id">@item.Title.ToUpper() </a></li>
+                @*<li is-active-route><a asp-controller="Category" asp-action="Index" asp-route-Id="@item.Id">@item.Title.ToUpper() </a></li>*@
+                <li is-active-route><a href="/@item.Slug">@item.Title.ToUpper() </a></li>
             }
         }
     }
@@ -38,14 +41,14 @@
                 <!-- start Navbar (Header) -->
                 <nav class="navbar navbar-default navbar-sticky-function navbar-arrow">
                     <div class="logo pull-left">
-                        <a href="index.html"><img alt="Image" src="~/images/logo1.png"></a>
+                        <a href="/"><img alt="Image" src="~/images/logo1.png"></a>
                     </div>
                     <div id="navbar" class="navbar-nav-wrapper pull-right">
 
                         @if (Model != null && Model.Count() > 0)
                         {
                             <ul class="nav navbar-nav" id="responsive-menu">
-                                <li is-active-route asp-controller="Home" asp-action="Index">
+                                <li is-active-route>
                                     <a href="/"> Home </a>
                                 </li>
                                 @{await RenderChildren(Model.Where(x => x.ParentId == null));}

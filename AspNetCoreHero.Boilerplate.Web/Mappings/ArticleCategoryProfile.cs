@@ -1,4 +1,6 @@
-﻿using AspNetCoreHero.Boilerplate.Domain.Entities;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetBySlug;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Boilerplate.Web.Models;
 using AutoMapper;
 using System;
@@ -13,6 +15,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Mappings
         public ArticleCategoryProfile()
         {
             CreateMap<ArticleCategory, NavigationViewModel>().ReverseMap();
+            CreateMap<GetAllArticleCategoryCachedResponse, NavigationViewModel>().ReverseMap();
+            CreateMap<GetArticleCategoryBySlugResponse, NavigationViewModel>().ReverseMap();
         }
     }
 }
