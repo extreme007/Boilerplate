@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetById;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetById;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Results;
 using AutoMapper;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetByCategoryId
 {
-    public class GetArticleByCategoryIdQuery : IRequest<Result<List<GetArticleByCategoryIdResponse>>>
+    public class GetArticleByCategoryIdQuery : IRequest<Result<List<GetAllArticleCachedResponse>>>
     {
         public int CategoryId { get; set; }
 
-        public class GetArticleByCategoryIdQueryHandler : IRequestHandler<GetArticleByCategoryIdQuery, Result<List<GetArticleByCategoryIdResponse>>>
+        public class GetArticleByCategoryIdQueryHandler : IRequestHandler<GetArticleByCategoryIdQuery, Result<List<GetAllArticleCachedResponse>>>
         {
             private readonly IArticleCacheRepository _articleCache;
             private readonly IMapper _mapper;
@@ -25,12 +26,12 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetBy
                 _mapper = mapper;
             }
 
-            public async Task<Result<List<GetArticleByCategoryIdResponse>>> Handle(GetArticleByCategoryIdQuery query, CancellationToken cancellationToken)
+            public async Task<Result<List<GetAllArticleCachedResponse>>> Handle(GetArticleByCategoryIdQuery query, CancellationToken cancellationToken)
             {
                 var article = await _articleCache.GetCachedListAsync();
-                var listResult = article.Where(x => x.CategoryId == query.CategoryId);
-                var mappedArticle = _mapper.Map<List<GetArticleByCategoryIdResponse>>(listResult);
-                return Result<List<GetArticleByCategoryIdResponse>>.Success(mappedArticle);
+                var listResult = article.Where(x => x.CategoryId == query.CategoryId && x.IsPublished ==true);
+                var mappedArticle = _mapper.Map<List<GetAllArticleCachedResponse>>(listResult);
+                return Result<List<GetAllArticleCachedResponse>>.Success(mappedArticle);
             }
         }
     }

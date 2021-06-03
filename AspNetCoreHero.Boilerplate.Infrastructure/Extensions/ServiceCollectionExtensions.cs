@@ -32,6 +32,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
             services.AddTransient<IArticleCacheRepository, ArticleCacheRepository>();
             services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
             services.AddTransient<IArticleCategoryCacheRepository, ArticleCategoryCacheRepository>();
+            services.AddTransient<IPartnerCacheRepository, PartnerCacheRepository>();
+            services.AddTransient<IPartnerRepository, PartnerRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

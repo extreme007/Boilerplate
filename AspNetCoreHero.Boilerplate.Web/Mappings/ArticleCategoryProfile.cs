@@ -16,7 +16,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Mappings
         {
             CreateMap<ArticleCategory, NavigationViewModel>().ReverseMap();
             CreateMap<GetAllArticleCategoryCachedResponse, NavigationViewModel>().ReverseMap();
-            CreateMap<GetArticleCategoryBySlugResponse, NavigationViewModel>().ReverseMap();
         }
     }
 }

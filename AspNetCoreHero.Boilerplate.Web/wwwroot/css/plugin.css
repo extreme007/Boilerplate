@@ -1728,7 +1728,9 @@
 }
 
 .slick-initialized .slick-slide {
-    display: block
+    display: block;
+    /*height:100px;*/
+    padding:10px;
 }
 
 .slick-loading .slick-slide {
@@ -1945,6 +1947,7 @@
 .slick-slide img {
     display: block;
     width: 100%;
+    height:60px;
 }
 
 .slick-slide img.slick-loading {

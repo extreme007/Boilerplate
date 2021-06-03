@@ -24,7 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                 var data = response.Data.OrderByDescending(x=>x.PostedDatetime);
                 model.TopHot = _mapper.Map<List<ArticleViewModel>>(data.Where(x=>x.IsHot == true && x.IsRank1 == false).Take(10));
                 model.TopNew = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsHot == false && x.IsRank1 == false).Take(10));
-                model.Rank1 = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsRank1 == true).Take(4));
+                model.Rank1 = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsRank1 == true).Take(5));
                 model.TheGioi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.CategoryId == 4).Take(9));
                 model.XaHoi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.CategoryId == 5).Take(9));
                 model.TheThao = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.CategoryId == 21).Take(9));

@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Results;
 using AutoMapper;
 using MediatR;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetById
 {
-    public class GetArticleByIdQuery : IRequest<Result<GetArticleByIdResponse>>
+    public class GetArticleByIdQuery : IRequest<Result<GetAllArticleCachedResponse>>
     {
         public int Id { get; set; }
 
-        public class GetArticleByIdQueryHandler : IRequestHandler<GetArticleByIdQuery, Result<GetArticleByIdResponse>>
+        public class GetArticleByIdQueryHandler : IRequestHandler<GetArticleByIdQuery, Result<GetAllArticleCachedResponse>>
         {
             private readonly IArticleCacheRepository _articleCache;
             private readonly IMapper _mapper;
@@ -22,11 +23,11 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetBy
                 _mapper = mapper;
             }
 
-            public async Task<Result<GetArticleByIdResponse>> Handle(GetArticleByIdQuery query, CancellationToken cancellationToken)
+            public async Task<Result<GetAllArticleCachedResponse>> Handle(GetArticleByIdQuery query, CancellationToken cancellationToken)
             {
                 var article = await _articleCache.GetByIdAsync(query.Id);
-                var mappedArticle = _mapper.Map<GetArticleByIdResponse>(article);
-                return Result<GetArticleByIdResponse>.Success(mappedArticle);
+                var mappedArticle = _mapper.Map<GetAllArticleCachedResponse>(article);
+                return Result<GetAllArticleCachedResponse>.Success(mappedArticle);
             }
         }
     }

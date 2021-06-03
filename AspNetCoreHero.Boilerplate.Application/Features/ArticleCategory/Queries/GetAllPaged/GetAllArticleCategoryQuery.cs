@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Extensions;
+using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Results;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllPaged
 {
-    public class GetAllArticleCategoryQuery : IRequest<PaginatedResult<GetAllArticleCategoryResponse>>
+    public class GetAllArticleCategoryQuery : IRequest<PaginatedResult<GetAllArticleCategoryCachedResponse>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -23,7 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Querie
         }
     }
 
-    public class GGetAllArticleCategoryQueryHandler : IRequestHandler<GetAllArticleCategoryQuery, PaginatedResult<GetAllArticleCategoryResponse>>
+    public class GGetAllArticleCategoryQueryHandler : IRequestHandler<GetAllArticleCategoryQuery, PaginatedResult<GetAllArticleCategoryCachedResponse>>
     {
         private readonly IArticleCategoryRepository _repository;
 
@@ -32,9 +33,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Querie
             _repository = repository;
         }
 
-        public async Task<PaginatedResult<GetAllArticleCategoryResponse>> Handle(GetAllArticleCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<GetAllArticleCategoryCachedResponse>> Handle(GetAllArticleCategoryQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<AspNetCoreHero.Boilerplate.Domain.Entities.ArticleCategory, GetAllArticleCategoryResponse>> expression = e => new GetAllArticleCategoryResponse
+            Expression<Func<AspNetCoreHero.Boilerplate.Domain.Entities.ArticleCategory, GetAllArticleCategoryCachedResponse>> expression = e => new GetAllArticleCategoryCachedResponse
             {
                 Id = e.Id,
                 Title = e.Title,

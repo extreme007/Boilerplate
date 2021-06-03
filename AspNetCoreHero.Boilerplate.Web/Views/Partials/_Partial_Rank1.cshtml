@@ -2,7 +2,7 @@
 @model IEnumerable<ArticleViewModel>
 @{
     var top1 = Model.FirstOrDefault();
-    var top2 = Model.Skip(1).Take(3);
+    var top2 = Model.Skip(1);
 }
 
 <section class="top_trending">
@@ -14,7 +14,7 @@
             <div class="col-sm-6 col-xs-12">
                 <div class="item-large">
                     <div class="item-large-image">
-                        <img alt="Image" src="~/images/food/trending2.jpg">
+                        <img alt="Image" src="@top1.Image">
                         <div class="image-overlay"></div>
                     </div>
 

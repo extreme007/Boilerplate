@@ -2,7 +2,7 @@
 {
     public static class ArticleCategoryCacheKeys
     {
-        public static string ListKey => "ArtilceCategoryList";
+        public static string ListKey => "ArticleCategoryList";
 
         public static string SelectListKey => "ArticleCategorySelectList";
 

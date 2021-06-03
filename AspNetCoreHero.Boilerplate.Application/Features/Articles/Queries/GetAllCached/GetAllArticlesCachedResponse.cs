@@ -12,6 +12,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
         public string Description { get; set; }
         public string FullDescription { get; set; }
         public string ThumbImage { get; set; }
+        public string Image { get; set; }
         public string Link { get; set; }
         public string FullLink { get; set; }
         public string SourceImage { get; set; }

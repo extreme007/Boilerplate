@@ -24,6 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Partner> Partners { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 

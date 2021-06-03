@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Results;
 using AutoMapper;
 using MediatR;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetById
 {
-    public class GetArticleCategoryByIdQuery : IRequest<Result<GetArticleCategoryByIdResponse>>
+    public class GetArticleCategoryByIdQuery : IRequest<Result<GetAllArticleCategoryCachedResponse>>
     {
         public int Id { get; set; }
 
-        public class GetArticleCategoryByIdQueryHandler : IRequestHandler<GetArticleCategoryByIdQuery, Result<GetArticleCategoryByIdResponse>>
+        public class GetArticleCategoryByIdQueryHandler : IRequestHandler<GetArticleCategoryByIdQuery, Result<GetAllArticleCategoryCachedResponse>>
         {
             private readonly IArticleCategoryCacheRepository _articleCategoryCache;
             private readonly IMapper _mapper;
@@ -22,11 +23,11 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Querie
                 _mapper = mapper;
             }
 
-            public async Task<Result<GetArticleCategoryByIdResponse>> Handle(GetArticleCategoryByIdQuery query, CancellationToken cancellationToken)
+            public async Task<Result<GetAllArticleCategoryCachedResponse>> Handle(GetArticleCategoryByIdQuery query, CancellationToken cancellationToken)
             {
                 var articleCategory = await _articleCategoryCache.GetByIdAsync(query.Id);
-                var mappedArticleCategory = _mapper.Map<GetArticleCategoryByIdResponse>(articleCategory);
-                return Result<GetArticleCategoryByIdResponse>.Success(mappedArticleCategory);
+                var mappedArticleCategory = _mapper.Map<GetAllArticleCategoryCachedResponse>(articleCategory);
+                return Result<GetAllArticleCategoryCachedResponse>.Success(mappedArticleCategory);
             }
         }
     }

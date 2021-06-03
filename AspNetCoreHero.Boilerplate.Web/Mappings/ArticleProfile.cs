@@ -16,7 +16,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Mappings
         {
             CreateMap<Article, ArticleViewModel>().ReverseMap();
             CreateMap<GetAllArticleCachedResponse, ArticleViewModel>().ReverseMap();
-            CreateMap<GetArticleByIdResponse, ArticleViewModel>().ReverseMap();
         }
     }
 }

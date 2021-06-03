@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Extensions;
+using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Results;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllPaged
 {
-    public class GetAllArticleQuery : IRequest<PaginatedResult<GetAllArticleResponse>>
+    public class GetAllArticleQuery : IRequest<PaginatedResult<GetAllArticleCachedResponse>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -23,7 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
         }
     }
 
-    public class GGetAllArticlesQueryHandler : IRequestHandler<GetAllArticleQuery, PaginatedResult<GetAllArticleResponse>>
+    public class GGetAllArticlesQueryHandler : IRequestHandler<GetAllArticleQuery, PaginatedResult<GetAllArticleCachedResponse>>
     {
         private readonly IArticleRepository _repository;
 
@@ -32,9 +33,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
             _repository = repository;
         }
 
-        public async Task<PaginatedResult<GetAllArticleResponse>> Handle(GetAllArticleQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<GetAllArticleCachedResponse>> Handle(GetAllArticleQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Article, GetAllArticleResponse>> expression = e => new GetAllArticleResponse
+            Expression<Func<Article, GetAllArticleCachedResponse>> expression = e => new GetAllArticleCachedResponse
             {
                 Id = e.Id,
                 Title = e.Title,
@@ -43,6 +44,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
                 Description = e.Description,
                 FullDescription = e.FullDescription,
                 ThumbImage = e.ThumbImage,
+                Image = e.Image,
                 Link = e.Link,
                 FullLink= e.FullLink,
                 SourceImage= e.SourceImage,
@@ -60,7 +62,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
                 CommentCount= e.CommentCount,
                 IsPublished=e.IsPublished
             };
-            var paginatedList = await _repository.Article
+            var paginatedList = await _repository.Article.Where(x=>x.IsPublished ==true)
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return paginatedList;

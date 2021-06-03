@@ -1548,9 +1548,10 @@ section.most-viewed{
   text-align: center;
   padding: 15px 30px;
   position: absolute;
-  top: 75%;
+  /*top: 75%;*/
   background: #0000007a;
   transition: all ease-in-out 0.3s;
+  bottom:0;
 }
 .item-large-content h3 a, .item-large-content p, .item-large-content .author-detail a, .item-large-content .author-detail p{
   color: #fff;
@@ -1566,7 +1567,8 @@ section.most-viewed{
   padding-bottom: 0;
 }
 .item-large:hover .item-large-content{
-  top: 28%;
+  /*top: 28%;*/
+  bottom:0;
 }
 .item-small-image{
   width: 28.3%;
@@ -1796,6 +1798,7 @@ footer{
   background-size: 100%;
   background-attachment: fixed;
   position: relative;
+  padding-bottom:0;
 }
 .footer-content{
   position: relative;
@@ -1870,7 +1873,7 @@ footer .header-social-links a{
 .copyright-content:before, .copyright-content:after{
   position: absolute;
   content: '';
-  width: 35%;
+  width: 100%;
   border-top:1px solid #555;
   left: 0;
   right: 0;

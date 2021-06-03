@@ -1,72 +1,23 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@using AspNetCoreHero.Boilerplate.Web.Extensions
+@model FooterViewModel
 <footer>
     <div class="footer-content">
         <div class="footer-slider">
             <div class="container">
                 <div class="slider-title text-center">
-                    <h3>Find Us on Instagram</h3>
+                    <h3>Đối tác</h3>
                 </div>
                 <div class="footer-slider-inner">
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer1.jpg">
+                    @foreach (var item in Model.Partner)
+                    {
+                        <div class="footer-slider-item">
+                            <a href="@item.Slug">
+                                <img alt="@item.Title" src="@item.Image">
+                            </a>
+                        </div>
+                    }
 
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer2.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer3.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer4.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer2.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer1.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer3.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer4.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer2.jpg">
-
-                        </a>
-                    </div>
-                    <div class="footer-slider-item">
-                        <a href="detail.html">
-                            <img alt="Image" src="~/images/footer3.jpg">
-
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -75,8 +26,8 @@
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
                         <div class="about">
-                            <h3>BlogMag</h3>
-                            <p>amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+                            <h3>Tintin247</h3>
+                            <p>Tổng hợp tin tức nóng hằng ngày từ các đối tác chính xác và nhanh nhất.</p>
                             <ul class="header-social-links">
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -84,35 +35,44 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-6">
+                    <div class="col-sm-4 col-xs-12">
                         <div class="categories">
-                            <h3>Categories</h3>
-                            <ul>
-                                <li><a href="#">Entertainment</a></li>
-                                <li><a href="#">Sports</a></li>
-                                <li><a href="#">Polictics</a></li>
-                                <li><a href="#">National</a></li>
-                                <li><a href="index-blog.html">Blog</a></li>
-                            </ul>
+                            <h3>Chuyên mục</h3>
+                            <div class="col-sm-6 col-xs-12">
+                                <ul>
+                                    @foreach (var subItem in Model.Category.Take(5))
+                                    {
+                                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <ul>
+                                    @foreach (var subItem in Model.Category.Skip(5).Take(5))
+                                    {
+                                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            @*@foreach (var item in Model.Category.Batch(2))
+        {
+            <div class="col-sm-6 col-xs-12">
+                <ul>
+                    @foreach (var subItem in item)
+                    {
+                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
+                    }
+
+                </ul>
+            </div>
+        }*@
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-6">
-                        <div class="tags">
-                            <h3>Popular Tags</h3>
-                            <ul>
-                                <li><a href="#">Entertainment</a></li>
-                                <li><a href="#">Sports</a></li>
-                                <li><a href="#">Polictics</a></li>
-                                <li><a href="#">National</a></li>
-                                <li><a href="#">International</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
                     <div class="col-sm-4 col-xs-12">
                         <div class="newsletter">
                             <h3>Newsletter</h3>
-                            <p> Dont Miss Anything</p>
-                            <p>Subscribe to our #newsletter</p>
+                            <p>Đăng kí để cập nhật tin tức mới nhất hằng ngày</p>
                             <form>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="email1" placeholder="Enter Email">
@@ -125,9 +85,12 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <div class="container">
+            <div class="">
                 <div class="copyright-content text-center">
-                    <span>Copyright © 2021 <a href="/">http://tintin247.com/</a> - All Rights reserved</span>
+                    <div class="container">
+                        <span>Copyright © 2021 <a href="/">http://tintin247.com/</a> - All Rights reserved</span>
+                    </div>
+                
                 </div>
             </div>
         </div>

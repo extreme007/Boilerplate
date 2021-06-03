@@ -13,10 +13,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Mappings
         public ArticleCategoryProfile()
         {
             CreateMap<CreateArticleCategoryCommand, ArticleCategory>().ReverseMap();
-            CreateMap<GetArticleCategoryByIdResponse, ArticleCategory>().ReverseMap();
             CreateMap<GetAllArticleCategoryCachedResponse, ArticleCategory>().ReverseMap();
-            CreateMap<GetAllArticleCategoryResponse, ArticleCategory>().ReverseMap();
-            CreateMap<GetArticleCategoryBySlugResponse, ArticleCategory>().ReverseMap();
         }
     }
 }

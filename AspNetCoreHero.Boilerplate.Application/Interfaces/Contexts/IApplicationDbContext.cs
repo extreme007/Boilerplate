@@ -18,5 +18,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts
 
         DbSet<Product> Products { get; set; }
         DbSet<Article> Articles { get; set; }
+        DbSet<Partner> Partners { get; set; }
     }
 }

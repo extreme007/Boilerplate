@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Results;
 using AutoMapper;
 using MediatR;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetBySlug
 {
-    public class GetArticleCategoryBySlugQuery : IRequest<Result<GetArticleCategoryBySlugResponse>>
+    public class GetArticleCategoryBySlugQuery : IRequest<Result<GetAllArticleCategoryCachedResponse>>
     {
         public string Slug { get; set; }
 
-        public class GetArticleCategoryBySlugQueryHandler : IRequestHandler<GetArticleCategoryBySlugQuery, Result<GetArticleCategoryBySlugResponse>>
+        public class GetArticleCategoryBySlugQueryHandler : IRequestHandler<GetArticleCategoryBySlugQuery, Result<GetAllArticleCategoryCachedResponse>>
         {
             private readonly IArticleCategoryCacheRepository _articleCategoryCache;
             private readonly IMapper _mapper;
@@ -23,12 +24,12 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Querie
                 _mapper = mapper;
             }
 
-            public async Task<Result<GetArticleCategoryBySlugResponse>> Handle(GetArticleCategoryBySlugQuery query, CancellationToken cancellationToken)
+            public async Task<Result<GetAllArticleCategoryCachedResponse>> Handle(GetArticleCategoryBySlugQuery query, CancellationToken cancellationToken)
             {
                 var listArticleCategory = await _articleCategoryCache.GetCachedListAsync();
                 var articleCategory = listArticleCategory.FirstOrDefault(x => x.Slug == query.Slug);
-                var mappedArticleCategory = _mapper.Map<GetArticleCategoryBySlugResponse>(articleCategory);
-                return Result<GetArticleCategoryBySlugResponse>.Success(mappedArticleCategory);
+                var mappedArticleCategory = _mapper.Map<GetAllArticleCategoryCachedResponse>(articleCategory);
+                return Result<GetAllArticleCategoryCachedResponse>.Success(mappedArticleCategory);
             }
         }
     }
