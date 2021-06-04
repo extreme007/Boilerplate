@@ -94,9 +94,9 @@ namespace AspNetCoreHero.Boilerplate.Web
                     name: "areaRoute",
                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute("category", "{slug}", new { Controllers = "Home", Actions = "Category" });
+                endpoints.MapControllerRoute("category", "{slug}", new { Controllers = "Category", Actions = "Index" });
 
-                endpoints.MapControllerRoute("article", "{categorySlug}/{slug}", new { Controllers = "Home", Actions = "Article" });
+                endpoints.MapControllerRoute("article", "{categorySlug}/{slug}", new { Controllers = "Article", Actions = "Index" });
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -1691,6 +1691,7 @@ section.buy-now, div.buy-now{
   background-attachment: fixed;
   position: relative;
   padding: 50px 0 60px;
+  height:200px;
 }
 .buy-now-content{
   position: relative;
@@ -2092,13 +2093,16 @@ ul.profile-link li{
 .sidebar-box:last-child{
   margin-bottom: 0;
 }
-.recent-item{
-  float: left;
-  margin-bottom: 20px;
-  width: 100%;
+.recent-item {
+    float: left;
+    /*margin-bottom: 20px;*/
+    width: 100%;
+    border-bottom: 1px dashed #f1f1f1;
+    padding: 20px 0;
 }
-.recent-item:last-child{
-  margin-bottom: 0;
+.recent-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
 }
 .recent-image{
   float: left;
@@ -2111,7 +2115,8 @@ ul.profile-link li{
   position: relative;
 }
 .recent-content h4{
-  margin: 10px 0 5px;
+  /*margin: 10px 0 5px;*/
+  margin:0;
 }
 .recent-content .author-detail{
   padding:0;
@@ -2170,11 +2175,12 @@ ul.reply{
 
 /* Listing Page */
 
-.list-item{
-  border: 1px solid #f1f1f1;
-  margin-bottom: 40px;
-  padding: 15px;
-  transition: all ease-in-out 0.3s;
+.list-item {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 40px;
+    padding: 15px;
+    transition: all ease-in-out 0.3s;
+    box-shadow: 0 0 15px #cccccc57;
 }
 .list-ad{
   margin-bottom: 30px;
@@ -3366,10 +3372,11 @@ section.categories-3{
   position: relative;
 }
 
-.tp-item{
-  position: relative;
-  float: left;
-  margin-bottom: 15px;
+.tp-item {
+    position: relative;
+    float: left;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #f1f1f1;
 }
 .top-post li:last-child .tp-item{
   margin-bottom: 0;
@@ -3383,18 +3390,19 @@ section.categories-3{
   text-align: center;
   line-height: 2;
   font-size: 13px;
-  top: 33%;
+  /*top: 33%;*/
+  top:0;
   border-radius: 50%;
   border: 2px solid #fff;
   font-weight: 600;
   color: #fff;
 }
 .tp-image{
-  width: 80px;
+  width: 100px;
   float: left;
 }
 .tp-content{
-  padding-left: 95px;
+  padding-left: 120px;
 }
 .tp-content h4{
   margin-bottom: 0;

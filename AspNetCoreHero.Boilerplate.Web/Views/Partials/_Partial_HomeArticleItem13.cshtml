@@ -1,0 +1,19 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@model ArticleViewModel
+
+<div class="list-item grid-item">
+    <div class="list-image">
+        <img src="@Model.ThumbImage" alt="@Model.Title">
+        <div class="image-overlay"></div>
+    </div>
+    <div class="list-content">
+        <h3><a href="@Model.FullSlug">@Model.Title</a></h3>
+        @*<a href="#" class="tag tag-blue">@Model.SourceName</a>*@
+        <p>@Model.Description</p>
+        <div class="author-detail">
+            @*<p><a href="#"><i class="icon-profile-male"></i> John Doe</a></p>*@
+            <p><i class="icon-clock"></i> @Model.PostedDatetime</p>
+            <p><a href="#"><i class="icon-chat"></i> @Model.CommentCount comments</a></p>
+        </div>
+    </div>
+</div>

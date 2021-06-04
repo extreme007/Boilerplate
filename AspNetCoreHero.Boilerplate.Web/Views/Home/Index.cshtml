@@ -7,7 +7,7 @@
 @*@await Html.PartialAsync("~/Views/Partials/_Partial_HomeBanner.cshtml")*@
 @await Html.PartialAsync("~/Views/Partials/_Partial_Rank1.cshtml", Model.Rank1)
 
-@await Html.PartialAsync("~/Views/Partials/_Partial_BreakingNews.cshtml")
+@await Html.PartialAsync("~/Views/Partials/_Partial_BreakingNews.cshtml", Model.BreakingNews)
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_TopHot.cshtml", Model.TopHot)
 
@@ -23,21 +23,42 @@
 
 <section class="buy-now">
     <div class="container">
-        <div class="buy-now-content">
-            <h2>Build your dream magazine now</h2>
-            <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#" class="btn-white">Buy Now</a>
-        </div>
+        @*<div class="stock-slider">
+                <div class="stock-slider-item">
+                    <h4>OIL</h4>
+                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>SILVER</h4>
+                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>DOLLAR</h4>
+                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>OIL</h4>
+                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>GOLD</h4>
+                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>WORLD BANK</h4>
+                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+                <div class="stock-slider-item">
+                    <h4>OIL</h4>
+                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+                </div>
+            </div>*@
     </div>
     <div class="sectionoverlay"></div>
 </section>
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.TheGioi, new ViewDataDictionary(ViewData) { { "Title", "Thế Giới" } })
-
-@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.XaHoi, new ViewDataDictionary(ViewData) { { "Title", "Xã Hội" } })
-
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.XaHoi, new ViewDataDictionary(ViewData) { { "Title", "Xã Hội" } })
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.TheThao, new ViewDataDictionary(ViewData) { { "Title", "Thể Thao" } })
-@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.GiaiTri, new ViewDataDictionary(ViewData) { { "Title", "Giải Trí" } })
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.PhapLuat, new ViewDataDictionary(ViewData) { { "Title", "Pháp Luật" } })
-
-@*@await Html.PartialAsync("~/Views/Partials/_Partial_Partner.cshtml")*@
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.GiaiTri, new ViewDataDictionary(ViewData) { { "Title", "Giải Trí" } })

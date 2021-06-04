@@ -1,9 +1,6 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Models
 @using AspNetCoreHero.Boilerplate.Web.Extensions
 @model IEnumerable<ArticleViewModel>
-@{
- 
-}
 
 <section class="top_trending">
     <div class="container">
@@ -16,25 +13,7 @@
                 @foreach (var subItem in item)
                 {
                     <div class="col-sm-6 col-xs-12">
-
-                        <div class="item-small">
-                            <div class="item-small-image">
-                                <img alt="Image" src="@subItem.ThumbImage">
-                                <div class="image-overlay"></div>
-                            </div>
-                            <div class="item-small-content">
-                                <h4><a href="@string.Format("/{0}/{1}-{2}",subItem.ArticleCategory.Slug,subItem.Slug,subItem.Id)">@subItem.Title</a></h4>
-                                <div class="author-detail">
-                                    @*<p><a href="#"><i class="icon-profile-male"></i> @item.Author</a></p>*@
-                                    <p><i class="icon-clock"></i> @subItem.PostedDatetime</p>
-                                    <p><a href="#"><i class="icon-chat"></i> @subItem.CommentCount comments</a></p>
-                                </div>
-                                <div class="post-tag">
-                                    <a href="#" class="tag-blue tag">@subItem.SourceName</a>
-                                </div>
-                            </div>
-                        </div>
-
+                        @await Html.PartialAsync("~/Views/Partials/_Partial_HomeArticleItem12.cshtml", subItem)
                     </div>
                 }
 
