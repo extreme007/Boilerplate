@@ -1,8 +1,9 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@using AspNetCoreHero.Boilerplate.Web.Extensions
 @model IEnumerable<ArticleViewModel>
 @{
-    var top1 = Model.FirstOrDefault();
-    var top2 = Model.Skip(1);
+    var top1 = Model.Where(x=>x.Image != null).FirstOrDefault();
+    var top2 = Model.Where(x=>x.Id != top1.Id);
 }
 
 <section class="top_trending">

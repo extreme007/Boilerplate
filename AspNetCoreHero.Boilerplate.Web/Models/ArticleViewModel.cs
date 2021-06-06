@@ -5,6 +5,16 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web.Models
 {
+    public class ArticlePagingViewModel
+    {
+        public List<ArticleViewModel> Data { get; set; }
+        public int Page { get; set; }
+        public int TotalPages { get; set; }
+        public long TotalCount { get; set; }
+        //public bool HasPreviousPage { get; }
+        //public bool HasNextPage { get; }
+    }
+
     public class ArticleViewModel
     {
         public int Id { get; set; }
@@ -25,7 +35,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         public string Tags { get; set; }
         public string Type { get; set; }
         public int CategoryId { get; set; }
-        public int GroupCategoryId { get; set; }
+        public int? GroupCategoryId { get; set; }
         public DateTime PostedDatetime { get; set; }
         public bool IsHot { get; set; }
         public bool IsRank1 { get; set; }
@@ -33,9 +43,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         public int CommentCount { get; set; }
         public bool IsPublished { get; set; }
         public NavigationViewModel ArticleCategory { get; set; }
-        public string FullSlug { 
-            get { 
-                return string.Format("/{0}/{1}-{2}", this.ArticleCategory.Slug, this.Slug, this.Id); 
+        public string FullSlug
+        {
+            get
+            {
+                return string.Format("/{0}/{1}-{2}", this.ArticleCategory.Slug, this.Slug, this.Id);
             }
         }
     }

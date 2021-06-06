@@ -13,7 +13,9 @@
     <partial name="_Styles" />
 </head>
 <body>
-
+    <div class="loader" style="display:none;">
+        <img src="~/images/Eclipse.gif" class="iconLoading"/>
+    </div>
     <!-- Header -->
     @(await Component.InvokeAsync<HeaderViewComponent>())
     <!-- Header Ends -->
@@ -21,7 +23,7 @@
     @(await Component.InvokeAsync<NavigationBarViewComponent>())
     <!-- Navigation Bar Ends -->
     @RenderBody()
-   
+
     <!-- Footer -->
     @(await Component.InvokeAsync<FooterViewComponent>())
     <!-- Footer Ends -->

@@ -10,18 +10,20 @@
         <div class="section-title">
             <h2>Tin mới</h2>
         </div>
-        @foreach (var item in Model.Batch(2))
+        @if (Model != null && Model.Count() > 0)
         {
-            <div class="row" style="margin:20px 0;">
-                @foreach (var subItem in item)
-                {
-                    <div class="col-sm-6 col-xs-12">
-                        @await Html.PartialAsync("~/Views/Partials/_Partial_HomeArticleItem12.cshtml", subItem)
-                    </div>
-                }
+            @foreach (var item in Model.Batch(2))
+            {
+                <div class="row" style="margin:20px 0;">
+                    @foreach (var subItem in item)
+                    {
+                        <div class="col-sm-6 col-xs-12">
+                            @await Html.PartialAsync("~/Views/Partials/_Partial_HomeArticleItem12.cshtml", subItem)
+                        </div>
+                    }
 
-            </div>
+                </div>
+            }
         }
-
     </div>
 </section>

@@ -28,7 +28,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetBy
 
             public async Task<Result<List<GetAllArticleCachedResponse>>> Handle(GetArticleByCategoryIdQuery query, CancellationToken cancellationToken)
             {
-                var article = await _articleCache.GetCachedListAsync();
+                var article = await _articleCache.GetCachedListAsync("ArticleCategory");
                 var listResult = article.Where(x => x.CategoryId == query.CategoryId && x.IsPublished ==true);
                 var mappedArticle = _mapper.Map<List<GetAllArticleCachedResponse>>(listResult);
                 return Result<List<GetAllArticleCachedResponse>>.Success(mappedArticle);

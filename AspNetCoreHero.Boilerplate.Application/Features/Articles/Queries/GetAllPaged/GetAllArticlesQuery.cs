@@ -1,10 +1,13 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Extensions;
+using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Results;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -16,11 +19,15 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
+        public int? GroupCategoryId { get; set; }
+        public int CategoryId { get; set; }
 
-        public GetAllArticleQuery(int pageNumber, int pageSize)
+        public GetAllArticleQuery(int pageNumber, int pageSize,int? groupCategoryId, int categoryId)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
+            GroupCategoryId = groupCategoryId;
+            CategoryId = categoryId;
         }
     }
 
@@ -55,14 +62,45 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
                 Tags= e.Tags,
                 Type=e.Type,
                 CategoryId= e.CategoryId,
+                GroupCategoryId= e.GroupCategoryId,
                 PostedDatetime= e.PostedDatetime,
                 IsHot= e.IsHot,
                 IsRank1= e.IsRank1,
                 ViewCount= e.ViewCount,
                 CommentCount= e.CommentCount,
-                IsPublished=e.IsPublished
+                IsPublished=e.IsPublished,
+                ArticleCategory =new GetAllArticleCategoryCachedResponse
+                {
+                    Id = e.ArticleCategory.Id,
+                    Title = e.ArticleCategory.Title,
+                    Slug = e.ArticleCategory.Title,
+                    ParentId = e.ArticleCategory.ParentId,
+                    Order = e.ArticleCategory.Order
+                }
             };
-            var paginatedList = await _repository.Article.Where(x=>x.IsPublished ==true)
+
+            //List<Predicate<Article,bool>> andCriteria;
+
+            Expression<Func<Article, bool>> expressionWhere = ar => ar.IsPublished == true && ar.ThumbImage != null;
+            if(request.CategoryId == 1)
+            {
+                expressionWhere = expressionWhere.And(x=>x.IsHot == false);
+            }
+            else if(request.CategoryId == 2)
+            {
+                expressionWhere = expressionWhere.And(x => x.IsHot == true);
+
+
+            }
+            else if(request.CategoryId == 3)
+            {
+
+            }else
+            {
+                expressionWhere = expressionWhere.And(x=>x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
+            }
+
+            var paginatedList = await _repository.Article.Include("ArticleCategory").OrderByDescending(x=>x.PostedDatetime).Where(expressionWhere)
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return paginatedList;

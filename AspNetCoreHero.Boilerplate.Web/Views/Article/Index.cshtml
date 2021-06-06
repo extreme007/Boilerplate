@@ -51,82 +51,9 @@
                             <a href="#" class="tag-blue tag">#@item</a>
                         }
                     </div>
-                    <div class="comment-box">
-                        <h3>Comments</h3>
-                        <ul class="comment-list">
-                            <li>
-                                <div class="comment-item">
-                                    <div class="comment-image">
-                                        <img src="~/images/author.jpg" alt="Image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h4>Jack Richard</h4>
-                                        <p class="date"><i class="icon-clock"></i> 12 May 2018</p>
-                                        <p>Et veniam possimus voluptatum voluptatem excepturi qui. Unde eum ut architecto veritatis quia deserunt incidunt consequatur. In fugiat voluptatem porro distinctio deleniti quod labore. Ipsam quibusdam inventore enim molestiae ducimus perspiciatis omnis. Eos repellat enim qui sit eaque maiores.</p>
-                                        <p>Quos quos tempora ab eos eum. Et libero fugiat quia et qui. Et illo et ut dolor nihil esse dolores rerum. Ut voluptatem voluptatibus non officiis aut quia.</p>
-                                        <a href="#" class="btn-white btn-red">Reply</a>
-                                    </div>
-                                </div>
-                                <ul class="reply">
-                                    <li>
-                                        <div class="comment-item">
-                                            <div class="comment-image">
-                                                <img src="~/images/author.jpg" alt="Image">
-                                            </div>
-                                            <div class="comment-content">
-                                                <h4>Jack Richard</h4>
-                                                <p class="date"><i class="icon-clock"></i> 12 May 2018</p>
-                                                <p>Et veniam possimus voluptatum voluptatem excepturi qui. Unde eum ut architecto veritatis quia deserunt incidunt consequatur. In fugiat voluptatem porro distinctio deleniti quod labore. Ipsam quibusdam inventore enim molestiae ducimus perspiciatis omnis. Eos repellat enim qui sit eaque maiores.</p>
-                                                <a href="#" class="btn-white btn-red">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="comment-item">
-                                    <div class="comment-image">
-                                        <img src="~/images/author.jpg" alt="Image">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h4>Jack Richard</h4>
-                                        <p class="date"><i class="icon-clock"></i> 12 May 2018</p>
-                                        <p>Et veniam possimus voluptatum voluptatem excepturi qui. Unde eum ut architecto veritatis quia deserunt incidunt consequatur. In fugiat voluptatem porro distinctio deleniti quod labore. Ipsam quibusdam inventore enim molestiae ducimus perspiciatis omnis. Eos repellat enim qui sit eaque maiores.</p>
-                                        <p>Quos quos tempora ab eos eum. Et libero fugiat quia et qui. Et illo et ut dolor nihil esse dolores rerum. Ut voluptatem voluptatibus non officiis aut quia.</p>
-                                        <a href="#" class="btn-white btn-red">Reply</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="comment-form">
-                        <form>
-                            <h3>Add a comment</h3>
-                            <div class="row">
-                                <div class="textarea col-sm-12">
-                                    <label for="Name">Your Comment:</label>
-                                    <textarea></textarea>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Name">Name:</label>
-                                    <input type="email" class="form-control" id="Name">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="email">Email address:</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                @*<div class="form-group col-sm-12">
-                                        <label for="website">Website:</label>
-                                        <input type="email" class="form-control" id="website">
-                                    </div>*@
-                                <div class="col-sm-12">
-                                    <div class="comment-btn">
-                                        <a href="#" class="btn-white btn-red">Submit Comment</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    @*@await Html.PartialAsync("~/Views/Partials/_Partial_CommentBox.cshtml")
+                    @await Html.PartialAsync("~/Views/Partials/_Partial_CommentForm.cshtml")*@
+
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">

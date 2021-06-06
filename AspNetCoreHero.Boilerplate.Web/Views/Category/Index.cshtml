@@ -1,142 +1,55 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Sidebar;
 @using AspNetCoreHero.Boilerplate.Web.Models
-@model IEnumerable<ArticleViewModel>
+@model ArticlePagingViewModel
 @{
     Layout = "_Layout";
+    var totalPages = Model.TotalPages;
 }
 <!-- Blog Content -->
 <section class="blog-content">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12">
-                <!-- Banner -->
-                <div id="home_banner_blog">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="slide-inner slide-overlay" style="background-image:url(images/slider/slider1.jpg)">
-                                    <div class="home_banner_text">
-                                        <div class="banner-tag">
-                                            <a href="#" class="tag tag-blue">#New</a>
-                                            <a href="#" class="tag tag-gold">#Health</a>
-                                        </div>
-                                        <h2><a href="detail.html">Discover your true health</a></h2>
-                                        <div class="author-detail">
-                                            <p><a href="#"><i class="icon-profile-male"></i> John Doe</a></p>
-                                            <p><i class="icon-clock"></i> 12 May</p>
-                                            <p><a href="#"><i class="icon-chat"></i> 5 comments</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="slide-inner slide-overlay" style="background-image:url(images/slider/slider2.jpg)">
-                                    <div class="home_banner_text">
-                                        <div class="banner-tag">
-                                            <a href="#" class="tag tag-blue">#New</a>
-                                            <a href="#" class="tag tag-gold">#Health</a>
-                                        </div>
-                                        <h2><a href="detail.html">Discover your true health</a></h2>
-                                        <div class="author-detail">
-                                            <p><a href="#"><i class="icon-profile-male"></i> John Doe</a></p>
-                                            <p><i class="icon-clock"></i> 12 May</p>
-                                            <p><a href="#"><i class="icon-chat"></i> 5 comments</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="slide-inner slide-overlay" style="background-image:url(images/slider/slider3.jpg)">
-                                    <div class="home_banner_text">
-                                        <div class="banner-tag">
-                                            <a href="#" class="tag tag-blue">#New</a>
-                                            <a href="#" class="tag tag-gold">#Health</a>
-                                        </div>
-                                        <h2><a href="detail.html">Discover your true health</a></h2>
-                                        <div class="author-detail">
-                                            <p><a href="#"><i class="icon-profile-male"></i> John Doe</a></p>
-                                            <p><i class="icon-clock"></i> 12 May</p>
-                                            <p><a href="#"><i class="icon-chat"></i> 5 comments</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-next swiper-button-white"></div>
-                        <div class="swiper-button-prev swiper-button-white"></div>
-                    </div>
-                </div>
-                <!-- Banner Ends -->
-                @if (Model != null)
+                @if (Model.Data != null && Model.Data.Count() > 0)
                 {
-                    @foreach (var item in Model)
-                    {
-                        <div class="blog-post">
-                            <div class="post-outer">
-                                <div class="row">
-                                    @if (@item.ThumbImage == null)
-                                    {
-                                        <div class="col-xs-12">
-                                            <div class="blog-post-content">
-                                                <h3><a href="@item.FullSlug">@item.Title</a></h3>
-                                                <div class="author-detail">
-                                                    @*<p><a href="#"><i class="icon-profile-male"></i> @item.Author</a></p>*@
-                                                    <p><i class="icon-clock"></i> @item.PostedDatetime</p>
-                                                    <p><a href="#"><i class="icon-chat"></i> @item.CommentCount comments</a></p>
-                                                </div>
-                                                <p>@item.Description</p>
-                                                <a href="@item.FullSlug" class="btn-white btn-red">Đọc tiếp</a>
-                                            </div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="col-xs-4">
-                                            <div class="blog-post-image">
-                                                <img src="@item.ThumbImage" alt="img">
-                                                <span><a href="#" class="tag tag-green">@item.SourceName</a></span>
-                                                @*<span>
-                                                        @if (item.Type == "video")
-                                                        {
-                                                            <a class="tag tag-green"> <i class="icon-camera"></i></a>
-                                                        }
-                                                        else if (item.Type == "Photo")
-                                                        {
-                                                            <a class="tag tag-blue"> <i class="icon-picture"></i></a>
-                                                        }
-                                                    </span>*@
-                                                <div class="image-overlay"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <div class="blog-post-content">
-                                                <h3><a href="@item.FullSlug">@item.Title</a></h3>
-                                                <div class="author-detail">
-                                                    @*<p><a href="#"><i class="icon-profile-male"></i> @item.Author</a></p>*@
-                                                    <p><i class="icon-clock"></i> @item.PostedDatetime</p>
-                                                    <p><a href="#"><i class="icon-chat"></i> @item.CommentCount comments</a></p>
-                                                </div>
-                                                <p>@item.Description</p>
-                                                <a href="@item.FullSlug" class="btn-white btn-red">Đọc tiếp</a>
-                                            </div>
-                                        </div>
-                                    }
+                    var firstItem = Model.Data.Where(x => x.Image != null).FirstOrDefault();
 
-                                </div>
-                            </div>
+                    <div class="item-large">
+                        <div class="item-large-image">
+                            <img alt="@firstItem.Title" src="@firstItem.Image">
+                            <div class="image-overlay"></div>
                         </div>
-                    }
+
+                        <div class="item-large-content">
+                            <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
+                            <p>@firstItem.Description</p>
+                            <div class="author-detail">
+                                @*<p><a href="#"><i class="icon-profile-male"></i> @top1.Author</a></p>*@
+                                <p><i class="icon-clock"></i> @firstItem.PostedDatetime</p>
+                                <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount comments</a></p>
+                            </div>
+                            @*<div class="post-tag" style="margin-top:10px;">
+                        <a href="#" class="tag-gold tag">@top1.SourceName</a>
+                    </div>*@
+                        </div>
+                    </div>
+                    <div id="listArticle">
+                        @await Html.PartialAsync("_Partial_ArticleItem.cshtml", Model.Data.Where(x => x.Id != firstItem.Id));
+                    </div>
+                    <div id="progressmarker"></div>
                 }
 
 
-                <div class="pagination">
-                    <ul class="pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                    </ul>
-                </div>
+                @*<div class="pagination">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    var isActive = Model.Page == i ? "active" : "";
+                    <li><a href="/tin-moi?page=@i" class="@isActive">@i</a></li>
+                }
+
+            </ul>
+        </div>*@
             </div>
             <div class="col-md-4 col-sm-12">
                 @(await Component.InvokeAsync<SidebarViewComponent>())
@@ -146,3 +59,52 @@
     </div>
 </section>
 <!-- Blog Content Ends -->
+
+@section Scripts{
+<script type="text/javascript">
+    var pageIndex = 2;
+    var isLoading = false;
+    var totalPages = @totalPages;
+    $(document).ready(function () {
+        //GetData();
+        $(window).scroll(function () {
+            var hT = $('#progressmarker').offset().top,
+                hH = $('#progressmarker').outerHeight(),
+                wH = $(window).height(),
+                wS = $(this).scrollTop();
+
+            if (wS > (hT + hH - wH)) {
+                GetData();
+            }
+        });
+    });
+
+    function GetData() {
+        if (isLoading === false && pageIndex <= totalPages) {
+            $.ajax({
+                type: 'GET',
+                url: '/LoadMore' + window.location.pathname,
+                data: { "page": pageIndex},
+                success: function (html) {
+                    $("#listArticle").append(html);
+                    pageIndex++;
+                },
+                beforeSend: function () {
+                    $(".loader").show();
+                    isLoading = true;
+                },
+                complete: function () {
+                    $(".loader").hide();
+                    isLoading = false;
+                },
+                error: function (error) {
+                    $(".loader").hide();
+                    console.log(error);
+                    isLoading = false;
+                }
+            });
+        }
+    }
+</script>
+
+}

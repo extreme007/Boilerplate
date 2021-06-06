@@ -35,13 +35,13 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             return article;
         }
 
-        public async Task<List<Article>> GetCachedListAsync()
+        public async Task<List<Article>> GetCachedListAsync(string includeProperties = "")
         {
             string cacheKey = ArticleCacheKeys.ListKey;
             var articleList = await _distributedCache.GetAsync<List<Article>>(cacheKey);
             if (articleList == null)
             {
-                articleList = await _articleRepository.GetListAsync("ArticleCategory");
+                articleList = await _articleRepository.GetListAsync(includeProperties);
                 await _distributedCache.SetAsync(cacheKey, articleList);
             }
             return articleList;

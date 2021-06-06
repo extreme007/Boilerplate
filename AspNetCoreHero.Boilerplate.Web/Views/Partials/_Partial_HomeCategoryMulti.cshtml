@@ -18,48 +18,51 @@
                 </ul>
             </div>
         </div>
-
-        @foreach (var item in dataGroup)
+        @if (Model != null && Model.Count() > 0)
         {
-            var firstItem = item.FirstOrDefault();
-            <div class="row mix @item.ToList().FirstOrDefault().ArticleCategory.Slug">
-                <div class="col-sm-6">
-                    <div class="item-large">
-                        <div class="item-large-image">
-                            <img alt="@firstItem.Title" src="@firstItem.Image">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="image-overlay"></div>
-                        <div class="item-large-content">
-                            <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
-                            <p>@firstItem.Description</p>
-                            <div class="author-detail">
-                                <p><i class="icon-clock"></i> @firstItem.PostedDatetime</p>
-                                <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount comments</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    @foreach (var subItem in item.Skip(1).Take(3))
-                    {
-                        <div class="item-small">
-                            <div class="item-small-image">
-                                <img alt="@subItem.Title" src="@subItem.ThumbImage">
+            @foreach (var item in dataGroup)
+            {
+                var firstItem = item.Where(x => x.Image != null).FirstOrDefault();
+                <div class="row mix @item.ToList().FirstOrDefault().ArticleCategory.Slug">
+                    <div class="col-sm-6">
+                        <div class="item-large">
+                            <div class="item-large-image">
+                                <img alt="@firstItem.Title" src="@firstItem.Image">
                                 <div class="image-overlay"></div>
                             </div>
-                            <div class="item-small-content">
-                                <h4><a href="@subItem.FullSlug">@subItem.Title</a></h4>
+                            <div class="image-overlay"></div>
+                            <div class="item-large-content">
+                                <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
+                                <p>@firstItem.Description</p>
                                 <div class="author-detail">
-                                    <p><i class="icon-clock"></i> @subItem.PostedDatetime</p>
-                                    <p><a href="#"><i class="icon-chat"></i> @subItem.CommentCount comments</a></p>
+                                    <p><i class="icon-clock"></i> @firstItem.PostedDatetime</p>
+                                    <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount comments</a></p>
                                 </div>
                             </div>
                         </div>
-                    }
+                    </div>
+                    <div class="col-sm-6">
+                        @foreach (var subItem in item.Where(x => x.Id != firstItem.Id))
+                        {
+                            <div class="item-small">
+                                <div class="item-small-image">
+                                    <img alt="@subItem.Title" src="@subItem.ThumbImage">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="item-small-content">
+                                    <h4><a href="@subItem.FullSlug">@subItem.Title</a></h4>
+                                    <div class="author-detail">
+                                        <p><i class="icon-clock"></i> @subItem.PostedDatetime</p>
+                                        <p><a href="#"><i class="icon-chat"></i> @subItem.CommentCount comments</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
+                    </div>
                 </div>
-            </div>
+            }
         }
+
     </div>
 </section>

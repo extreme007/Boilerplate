@@ -62,3 +62,8 @@
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.TheThao, new ViewDataDictionary(ViewData) { { "Title", "Thể Thao" } })
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.PhapLuat, new ViewDataDictionary(ViewData) { { "Title", "Pháp Luật" } })
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.GiaiTri, new ViewDataDictionary(ViewData) { { "Title", "Giải Trí" } })
+
+@section Scripts
+{
+    <script src="~/js/custom-mixitup.js"></script>
+}
