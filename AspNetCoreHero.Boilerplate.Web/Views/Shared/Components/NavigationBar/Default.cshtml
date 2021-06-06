@@ -1,6 +1,8 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Models
 @model IEnumerable<NavigationViewModel>
-
+@{ 
+    var currentUrl = Context.Request.Path;
+}
 @{
     async Task RenderChildren(IEnumerable<NavigationViewModel> listCategory)
     {
@@ -9,7 +11,7 @@
             if (Model.Where(x => x.ParentId == item.Id).Count() > 0)
             {
                 IEnumerable<NavigationViewModel> childItems = Model.Where(x => x.ParentId == item.Id);
-                <li is-active-route>
+                <li>
                     @if (item.ParentId == null)
                     {
                         @*<a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>*@
@@ -28,7 +30,7 @@
             else
             {
                 @*<li is-active-route><a asp-controller="Category" asp-action="Index" asp-route-Id="@item.Id">@item.Title.ToUpper() </a></li>*@
-                <li is-active-route><a href="/@item.Slug">@item.Title.ToUpper() </a></li>
+                <li><a href="/@item.Slug">@item.Title.ToUpper() </a></li>
             }
         }
     }
@@ -48,7 +50,7 @@
                         @if (Model != null && Model.Count() > 0)
                         {
                             <ul class="nav navbar-nav" id="responsive-menu">
-                                <li is-active-route>
+                                <li>
                                     <a href="/"> Home </a>
                                 </li>
                                 @{await RenderChildren(Model.Where(x => x.ParentId == null));}

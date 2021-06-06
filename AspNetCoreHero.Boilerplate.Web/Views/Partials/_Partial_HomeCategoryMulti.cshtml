@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        @foreach (var subItem in item.Where(x => x.Id != firstItem.Id))
+                        @foreach (var subItem in item.Where(x => x.Id != firstItem.Id).Take(3))
                         {
                             <div class="item-small">
                                 <div class="item-small-image">

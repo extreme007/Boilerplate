@@ -44,7 +44,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         [Route("LoadMore/{slug}", Name = "loadMore")]
         public async Task<ActionResult> GetDataArticle(string slug,int? page)
         {
-            Thread.Sleep(4000);
             int pageNumberRequest = page ?? 1;
             int pageSizeRequest = _configuration.GetValue<int>("PageSize");
             var category = await GetIdBySlug(slug);
@@ -59,7 +58,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                     result = _mapper.Map<List<ArticleViewModel>>(response.Data);
                 }
             }
-            
+            Thread.Sleep(1000);
             return PartialView("_Partial_ArticleItem", result);
         }
 
