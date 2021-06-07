@@ -5,7 +5,6 @@
     Layout = "_Layout";
     var totalPages = Model.TotalPages;
 }
-<!-- Blog Content -->
 <section class="blog-content">
     <div class="container">
         <div class="row">
@@ -25,12 +24,12 @@
                             <p>@firstItem.Description</p>
                             <div class="author-detail">
                                 @*<p><a href="#"><i class="icon-profile-male"></i> @top1.Author</a></p>*@
-                                <p><i class="icon-clock"></i> @firstItem.PostedDatetime</p>
-                                <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount comments</a></p>
+                                <p><i class="icon-clock"></i> @firstItem.PostedDatetimeString</p>
+                                <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount</a></p>
                             </div>
                             @*<div class="post-tag" style="margin-top:10px;">
-                        <a href="#" class="tag-gold tag">@top1.SourceName</a>
-                    </div>*@
+                                    <a href="#" class="tag-gold tag">@top1.SourceName</a>
+                                </div>*@
                         </div>
                     </div>
                     <div id="listArticle">
@@ -41,15 +40,15 @@
 
 
                 @*<div class="pagination">
-            <ul class="pagination">
-                @for (int i = 1; i <= Model.TotalPages; i++)
-                {
-                    var isActive = Model.Page == i ? "active" : "";
-                    <li><a href="/tin-moi?page=@i" class="@isActive">@i</a></li>
-                }
+                        <ul class="pagination">
+                            @for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                var isActive = Model.Page == i ? "active" : "";
+                                <li><a href="/tin-moi?page=@i" class="@isActive">@i</a></li>
+                            }
 
-            </ul>
-        </div>*@
+                        </ul>
+                    </div>*@
             </div>
             <div class="col-md-4 col-sm-12">
                 @(await Component.InvokeAsync<SidebarViewComponent>())
@@ -58,10 +57,9 @@
         </div>
     </div>
 </section>
-<!-- Blog Content Ends -->
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     var pageIndex = 2;
     var isLoading = false;
     var totalPages = @totalPages;
@@ -105,6 +103,6 @@
             });
         }
     }
-</script>
+    </script>
 
 }

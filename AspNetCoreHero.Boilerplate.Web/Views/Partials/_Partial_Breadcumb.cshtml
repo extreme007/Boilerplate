@@ -1,0 +1,18 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@model NavigationViewModel
+@if (Model != null)
+{
+    <div class="breadcrumb_wrapper">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item" aria-current="page" style="color:red;"> <a href="/@Model.Slug" style="color:red;">@Model.Title</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+}
+

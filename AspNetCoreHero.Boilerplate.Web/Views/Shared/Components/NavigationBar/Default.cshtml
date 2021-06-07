@@ -2,6 +2,7 @@
 @model IEnumerable<NavigationViewModel>
 @{ 
     var currentUrl = Context.Request.Path;
+    var abc = currentUrl;
 }
 @{
     async Task RenderChildren(IEnumerable<NavigationViewModel> listCategory)

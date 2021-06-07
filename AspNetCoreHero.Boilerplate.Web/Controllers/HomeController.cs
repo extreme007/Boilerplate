@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetBySlug;
 using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAllPaged;
 using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetByCategoryId;
 using AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetById;
 using AspNetCoreHero.Boilerplate.Web.Models;
@@ -18,10 +19,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new HomeViewModel();
-            var response = await _mediator.Send(new GetAllArticleCachedQuery());
-            if(response.Succeeded)
+            //var response = await _mediator.Send(new GetAllArticleCachedQuery());
+            var response = await _mediator.Send(new GetAllArticlesNoCacheQuery());
+            if (response.Succeeded)
             {
-                var data = response.Data.OrderByDescending(x=>x.PostedDatetime);
+                var data = response.Data;
                 model.TopHot = _mapper.Map<List<ArticleViewModel>>(data.Where(x=>x.IsHot == true && x.IsRank1 == false).Take(10));
                 model.TopNew = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsHot == false && x.IsRank1 == false).Take(10));
                 model.Rank1 = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsRank1 == true).Take(4));
@@ -30,17 +32,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                 model.TheThao = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 21).Take(6));
                 model.PhapLuat = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 29).Take(6));
                 model.GiaiTri = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 25).Take(6));
-                //model.KhoaHoc = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 35).Take(6));
 
                 model.BreakingNews = _mapper.Map<List<ArticleViewModel>>(data.Take(10));
             }    
 
             return View(model);
-        }
-
-        public IActionResult Error()
-        {
-            return View();
         }
     }
 }

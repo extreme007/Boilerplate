@@ -4,7 +4,8 @@
 @{
     Layout = "_Layout";
 }
-<!-- Breadcrumb -->
+
+@await Html.PartialAsync("~/Views/Partials/_Partial_Breadcumb.cshtml",Model.ArticleCategory)
 <section class="page-cover">
     <div class="container">
         <div class="row">
@@ -15,7 +16,7 @@
                         <a class="source" href="@Model.SourceLink">
                             <img class="image" src="@Model.SourceImage" alt="@Model.SourceName">
                         </a>
-                        <time> @Model?.PostedDatetime </time>
+                        <time> @Model?.PostedDatetimeString </time>
                         <a><i class="icon-chat"></i> @Model?.CommentCount </a>
                     </div>
                 </div>
@@ -23,8 +24,6 @@
         </div>
     </div>
 </section>
-<!-- Breadcrumb Ends -->
-<!-- Detail -->
 <section class="item-content">
     <div class="container">
         <div class="row">

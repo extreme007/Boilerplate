@@ -8,6 +8,8 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -18,8 +20,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Net;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web
 {
@@ -59,6 +63,23 @@ namespace AspNetCoreHero.Boilerplate.Web
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
+
+            // Add Hangfire services.
+            services.AddHangfire(configuration => configuration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(_configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
+                {
+                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                    QueuePollInterval = TimeSpan.Zero,
+                    UseRecommendedIsolationLevel = true,
+                    DisableGlobalLocks = true
+                }));
+
+            // Add the processing server as IHostedService
+           services.AddHangfireServer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,27 +104,37 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseAuthentication();
   
             app.UseAuthorization();
+
+            app.UseHangfireDashboard();
+
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapAreaControllerRoute(
-                //   name: "Admin",
-                //   areaName: "Admin",
-                //    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                   name: "Admin",
+                   areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "areaRoute",
-                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                // name: "areaRoute",
+                //pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute("category", "{slug}", new { Controllers = "Category", Actions = "Index" });
-                endpoints.MapControllerRoute("loadMore", "LoadMore/{slug}", new { Controllers = "Category", Actions = "GetDataArticle" });
 
-                endpoints.MapControllerRoute("article", "{categorySlug}/{slug}", new { Controllers = "Article", Actions = "Index" });
+                //endpoints.MapControllerRoute("category", "{slug}", new { Controllers = "Category", Actions = "Index" });
+                //endpoints.MapControllerRoute("loadMore", "LoadMore/{slug}", new { Controllers = "Category", Actions = "GetDataArticle" });
+               // endpoints.MapControllerRoute("article", "{categorySlug}/{slug}-{id}", new { Controllers = "Article", Actions = "Index" });
+
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
+                endpoints.MapHangfireDashboard();
+
+                endpoints.MapFallback(context => {
+                    context.Response.Redirect("/Error");
+                    return Task.CompletedTask;
+                });
             });
         }
     }

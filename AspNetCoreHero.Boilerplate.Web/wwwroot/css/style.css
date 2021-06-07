@@ -139,7 +139,6 @@ hr {
 p {
   margin-bottom: 15px;
   color: #555;
-  font-size: 15px;
 }
 
 ul {
@@ -1935,7 +1934,7 @@ section.item-content{
   position: relative;
 }
 section.page-cover{
-  padding: 50px 0 0 0;
+  padding: 10px 0 0 0;
 }
 .cover-content{
   position: relative;
@@ -2249,28 +2248,33 @@ ul.reply{
 
 /* BreadCrumb */
 
-.breadcrumb_wrapper{
-  padding: 100px 0 0;
+.breadcrumb_wrapper {
+    /*  padding: 100px 0 0;
   position: relative;
   text-align: center;
   background: radial-gradient(circle farthest-side at center bottom, #4f7799, #334656 110%);
   background-size: contain;
   background-attachment: fixed;
   margin-bottom: 20px;
+*/
+    position:relative;
+    padding: 0;
+    box-shadow: 0px 3px 5px #f7f7f770;
 }
 .breadcrumb-content{
-  position: absolute;
-  left: 0;
+  position: relative;
+/*  left: 0;
   right: 0;
   margin: 0 auto;
-  bottom: -20px;
+  bottom: -20px;*/
 }
 .breadcrumb-content nav{
   display: inline-block;
-  box-shadow: 0px 0px 5px #cccccc57;
+  /*box-shadow: 0px 0px 5px #cccccc57;*/
   padding: 10px 25px;
   background: #fff;
   z-index: 1;
+  padding-left:0;
 }
  .breadcrumb-content ul{
   margin-bottom: 0;

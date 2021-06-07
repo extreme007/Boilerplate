@@ -88,3 +88,9 @@
     width: 150px;
     overflow: hidden;
 }
+
+.item-detail .body-text {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}

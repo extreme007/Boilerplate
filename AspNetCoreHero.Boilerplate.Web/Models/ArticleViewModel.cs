@@ -50,5 +50,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
                 return string.Format("/{0}/{1}-{2}", this.ArticleCategory.Slug, this.Slug, this.Id);
             }
         }
+        public string PostedDatetimeString {
+            get
+            {
+                return PostedDatetime.ToString("dd/MM/yyyy HH:mm");
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Commands.Crea
         public string Description { get; set; }
         public string FullDescription { get; set; }
         public string ThumbImage { get; set; }
+        public string Image { get; set; }
         public string Link { get; set; }
         public string FullLink { get; set; }
         public string SourceImage { get; set; }
@@ -27,10 +28,14 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Commands.Crea
         public string Tags { get; set; }
         public string Type { get; set; }
         public int CategoryId { get; set; }
+        public int GroupCategoryId { get; set; }
+        public int ViewCount { get; set; }
+        public int CommentCount { get; set; }
         public DateTime PostedDatetime { get; set; }
         public bool IsHot { get; set; }
         public bool IsRank1 { get; set; }
         public bool IsPublished { get; set; }
+        public string CreatedBy { get; set; }
     }
 
     public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, Result<int>>

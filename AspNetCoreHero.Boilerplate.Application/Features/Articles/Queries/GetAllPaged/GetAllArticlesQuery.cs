@@ -73,7 +73,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
                 {
                     Id = e.ArticleCategory.Id,
                     Title = e.ArticleCategory.Title,
-                    Slug = e.ArticleCategory.Title,
+                    Slug = e.ArticleCategory.Slug,
                     ParentId = e.ArticleCategory.ParentId,
                     Order = e.ArticleCategory.Order
                 }

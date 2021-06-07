@@ -3,7 +3,6 @@
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.NavigationBar;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
-<!-- Mirrored from cyclonethemes.com/demo/html/blogmag/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Apr 2020 02:53:25 GMT -->
 <head>
 
     <meta charset="UTF-8">
@@ -16,18 +15,10 @@
     <div class="loader" style="display:none;">
         <img src="~/images/Eclipse.gif" class="iconLoading"/>
     </div>
-    <!-- Header -->
     @(await Component.InvokeAsync<HeaderViewComponent>())
-    <!-- Header Ends -->
-    <!-- Navigation Bar -->
     @(await Component.InvokeAsync<NavigationBarViewComponent>())
-    <!-- Navigation Bar Ends -->
     @RenderBody()
-
-    <!-- Footer -->
     @(await Component.InvokeAsync<FooterViewComponent>())
-    <!-- Footer Ends -->
-    <!-- back to top start -->
     <div id="back-to-top">
         <a href="#"></a>
     </div>

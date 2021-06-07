@@ -17,7 +17,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
     [AllowAnonymous]
     public class CategoryController : BaseController<CategoryController>
     {
-        [Route("{slug}", Name = "category")]
+        [Route("{slug}")]
         public async Task<IActionResult> Index(string slug,int? page)
         {
             int pageNumberRequest = page ?? 1;
@@ -36,14 +36,16 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                     result.TotalCount = response.TotalCount;
                     result.Data = _mapper.Map<List<ArticleViewModel>>(response.Data);
                 }
+                return View(result);
             }
-
-            return View(result);
+            Response.StatusCode = 404;
+            return RedirectToAction("Index", "Error");
         }
 
-        [Route("LoadMore/{slug}", Name = "loadMore")]
+        [Route("LoadMore/{slug}")]
         public async Task<ActionResult> GetDataArticle(string slug,int? page)
         {
+            Thread.Sleep(500);
             int pageNumberRequest = page ?? 1;
             int pageSizeRequest = _configuration.GetValue<int>("PageSize");
             var category = await GetIdBySlug(slug);
@@ -58,7 +60,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                     result = _mapper.Map<List<ArticleViewModel>>(response.Data);
                 }
             }
-            Thread.Sleep(1000);
+
             return PartialView("_Partial_ArticleItem", result);
         }
 
