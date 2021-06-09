@@ -1,10 +1,12 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Sidebar;
 @using AspNetCoreHero.Boilerplate.Web.Models
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Breadcrumb;
 @model ArticlePagingViewModel
 @{
     Layout = "_Layout";
     var totalPages = Model.TotalPages;
 }
+@(await Component.InvokeAsync<BreadcrumbViewComponent>(new { parentId = Model.CategoryId, isArticle = false }))
 <section class="blog-content">
     <div class="container">
         <div class="row">
@@ -62,7 +64,8 @@
     <script type="text/javascript">
     var pageIndex = 2;
     var isLoading = false;
-    var totalPages = @totalPages;
+        var totalPages = @totalPages;
+        console.log(totalPages);
     $(document).ready(function () {
         //GetData();
         $(window).scroll(function () {

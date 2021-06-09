@@ -19,7 +19,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Footer
             if (listPartner.Succeeded && listCategory.Succeeded)
             {
                 viewModel.Partner = _mapper.Map<List<PartnerViewModel>>(listPartner.Data);
-                viewModel.Category = _mapper.Map<List<NavigationViewModel>>(listCategory.Data.OrderBy(x=>x.Order).Where(x=>x.ParentId!= null).Take(10));
+                viewModel.Category = _mapper.Map<List<NavigationViewModel>>(listCategory.Data.OrderBy(x=>x.Order).Where(x=>x.ParentId== null && x.IsVisible ==true));
             }
             return View(viewModel);
         }

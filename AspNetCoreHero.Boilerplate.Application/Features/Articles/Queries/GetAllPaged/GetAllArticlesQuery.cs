@@ -82,24 +82,24 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
             //List<Predicate<Article,bool>> andCriteria;
 
             Expression<Func<Article, bool>> expressionWhere = ar => ar.IsPublished == true && ar.ThumbImage != null;
-            if(request.CategoryId == 1)
-            {
-                expressionWhere = expressionWhere.And(x=>x.IsHot == false);
-            }
-            else if(request.CategoryId == 2)
-            {
-                expressionWhere = expressionWhere.And(x => x.IsHot == true);
+            //if(request.CategoryId == 1)
+            //{
+            //    expressionWhere = expressionWhere.And(x=>x.IsHot == false);
+            //}
+            //else if(request.CategoryId == 2)
+            //{
+            //    expressionWhere = expressionWhere.And(x => x.IsHot == true);
 
 
-            }
-            else if(request.CategoryId == 3)
-            {
+            //}
+            //else if(request.CategoryId == 3)
+            //{
 
-            }else
-            {
-                expressionWhere = expressionWhere.And(x=>x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
-            }
-
+            //}else
+            //{
+            //    expressionWhere = expressionWhere.And(x=>x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
+            //}
+            expressionWhere = expressionWhere.And(x => x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
             var paginatedList = await _repository.Article.Include("ArticleCategory").OrderByDescending(x=>x.PostedDatetime).Where(expressionWhere)
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);

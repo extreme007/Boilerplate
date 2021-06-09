@@ -382,21 +382,24 @@ ul.nav-mini li i{color: #fff; padding-right: 5px;}
   display: inline-block;
 }
 
-.nav.navbar-nav > li > a {
-    line-height: 3.5;
-    font-size: 14px;
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    -moz-transition: all 0.3s ease-in-out 0s;
-    -ms-transition: all 0.3s ease-in-out 0s;
-    -o-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding:0;
-    color: #333;
-    position: relative;
-    font-weight: 600;
-}
+    .nav.navbar-nav > li > a {
+        /*line-height: 3.5;*/
+        line-height: 3;
+        /*font-size: 14px;*/
+        font-size: 12px;
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        -moz-transition: all 0.3s ease-in-out 0s;
+        -ms-transition: all 0.3s ease-in-out 0s;
+        -o-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+        text-transform: uppercase;
+        /*letter-spacing: 1.5px;*/
+        letter-spacing: 1px;
+        padding: 0;
+        color: #333;
+        position: relative;
+        font-weight: 600;
+    }
 
 .nav.navbar-nav > li > a:hover, .nav.navbar-nav > li.active > a,.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
     color: #f75656;
@@ -1175,7 +1178,7 @@ ul.header-social-links li {
 a.searchtoggle{
   position: absolute;
   right: 0;
-  top: 25px;
+  top: 15px;
   z-index: 999;
   font-size: 13px;
 }
@@ -2678,8 +2681,9 @@ section.blog-content .list-fullwidth{
 .nav-content-style-2 .nav.navbar-nav{
   text-align: left;
 }
-.nav-content-style-1 .nav.navbar-nav li{
-  margin: 0 10px;
+.nav-content-style-1 .nav.navbar-nav li {
+    /*margin: 0 10px;*/
+    margin: 0 5px;
 }
 .nav-content-style-1 .nav.navbar-nav li ul{
   top: 54px;
@@ -2699,7 +2703,7 @@ section.blog-content .list-fullwidth{
 
 }
 header .logo{
-  padding: 70px 0;
+  padding: 20px 0;
   text-align: center;
   border-bottom: 1px solid #e1e1e1;
 }
@@ -4254,7 +4258,7 @@ p.lost_password{
     padding:0;
   }
   header .logo{
-    padding: 50px 0;
+    padding: 20px 0;
   }
   #sidebar{
     margin-top: 30px;

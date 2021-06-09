@@ -9,5 +9,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Querie
         public string Slug { get; set; }
         public int? ParentId { get; set; }
         public int? Order { get; set; }
+        public bool IsVisible { get; set; }
+        public bool IsTextOnly { get; set; }
     }
 }

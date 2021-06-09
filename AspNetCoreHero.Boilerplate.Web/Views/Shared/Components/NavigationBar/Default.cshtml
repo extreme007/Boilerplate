@@ -1,76 +1,79 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Models
 @model IEnumerable<NavigationViewModel>
-@{ 
-    var currentUrl = Context.Request.Path;
-    var abc = currentUrl;
-}
 @{
-    async Task RenderChildren(IEnumerable<NavigationViewModel> listCategory)
+    var currentUrl = Context.Request.Path;
+    var category = ViewData["Category"] as NavigationViewModel;
+}
+
+@{
+    async Task RenderChildren(IEnumerable<NavigationViewModel> navigationPages)
     {
-        foreach (NavigationViewModel item in listCategory)
+        foreach (var item in navigationPages)
         {
-            if (Model.Where(x => x.ParentId == item.Id).Count() > 0)
-            {
-                IEnumerable<NavigationViewModel> childItems = Model.Where(x => x.ParentId == item.Id);
-                <li>
-                    @if (item.ParentId == null)
-                    {
-                        @*<a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>*@
-                        <a href="/@item.Slug">@item.Title.ToUpper() <i class="fa fa-angle-down"></i></a>
-                    }
-                    else
-                    {
-                        @*<a asp-controller="Category" asp-action="" asp-route-Id="@item.Id">@item.Title.ToUpper()</a>*@
-                        <a href="/@item.Slug">@item.Title.ToUpper()</a>
-                    }
-                    <ul class="sub-menu">
-                        @{ await RenderChildren(childItems); }
-                    </ul>
-                </li>
-            }
-            else
-            {
-                @*<li is-active-route><a asp-controller="Category" asp-action="Index" asp-route-Id="@item.Id">@item.Title.ToUpper() </a></li>*@
-                <li><a href="/@item.Slug">@item.Title.ToUpper() </a></li>
-            }
+            await RenderPageLink(item);
+        }
+    }
+
+    async Task RenderPageLink(NavigationViewModel item)
+    {
+        //bool isActive = Model.Id == item.Id;
+        var classActive = item.Slug == category?.Slug ? "active" : "";
+        var children = Model.Where(x => x.ParentId == item.Id && x.IsVisible == true);
+        if (children.Any() && !item.IsTextOnly)
+        {
+            <li class="has-child @classActive">
+                @if (item.ParentId == null)
+                {
+
+                    <a href="/@item.Slug">@item.Title <i class="fa fa-angle-down"></i></a>
+                }
+                else
+                {
+                    <a href="/@item.Slug">@item.Title</a>
+                }
+                <ul class="sub-menu">
+                    @{ await RenderChildren(children); }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="@classActive"><a href="/@item.Slug">@item.Title</a></li>
         }
     }
 }
 
 <div class="navigation">
     <div class="container">
-        <div class="navigation-content">
-            <div class="header_menu">
-                <!-- start Navbar (Header) -->
+        <div class="navigation-content nav-content-style-1">
+            <div class="header_menu row">
                 <nav class="navbar navbar-default navbar-sticky-function navbar-arrow">
-                    <div class="logo pull-left">
-                        <a href="/"><img alt="tintin247" src="~/images/logo1.png"></a>
-                    </div>
-                    <div id="navbar" class="navbar-nav-wrapper pull-right">
-
+                    <div id="navbar" class="navbar-nav-wrapper text-center col-xs-12">
                         @if (Model != null && Model.Count() > 0)
                         {
+                            var activeHome = category == null ? "active" : "";
                             <ul class="nav navbar-nav" id="responsive-menu">
-                                <li>
+                                <li class="@activeHome">
                                     <a href="/"> Home </a>
                                 </li>
-                                @{await RenderChildren(Model.Where(x => x.ParentId == null));}
+                                @{await RenderChildren(Model.Where(x => x.IsVisible == true && x.ParentId == null));}
                             </ul>
                         }
 
-                        <a id="searchtoggl" class="searchtoggle"><i class="fa fa-search" aria-hidden="true"></i></a>
-                    </div><!--/.nav-collapse -->
+
+                    </div>
+                    @*<a id="searchtoggl" class="searchtoggle"><i class="fa fa-search" aria-hidden="true"></i></a>*@
                     <div id="slicknav-mobile"></div>
                 </nav>
             </div>
-            <div id="searchbar" class="searchbar">
+            @*<div id="searchbar" class="searchbar">
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" placeholder="Search Now">
                         <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
                     </div>
                 </form>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

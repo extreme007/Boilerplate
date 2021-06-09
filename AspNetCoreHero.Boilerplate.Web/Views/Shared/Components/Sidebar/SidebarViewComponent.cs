@@ -19,8 +19,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Sidebar
             if (responseArticle.Succeeded && responseCategory.Succeeded)
             {
                 var dataArticle = _mapper.Map<List<ArticleViewModel>>(responseArticle.Data);
-                viewModel.SidebarCategory = _mapper.Map<List<NavigationViewModel>>(responseCategory.Data.Where(x=>x.ParentId != null).OrderBy(x => x.Order).Take(10));
-                viewModel.SidebarTopNews = dataArticle.OrderByDescending(x => x.PostedDatetime).Take(5).ToList();
+                viewModel.SidebarCategory = _mapper.Map<List<NavigationViewModel>>(responseCategory.Data.Where(x=>x.ParentId == null && x.IsVisible == true).OrderBy(x => x.Order));
+                viewModel.SidebarTopNews = dataArticle.Take(5).ToList();
                 viewModel.SidebarTopView = dataArticle.OrderByDescending(x => x.ViewCount).Take(5).ToList();
                 viewModel.SiebarTopComment = dataArticle.OrderByDescending(x => x.CommentCount).Take(5).ToList();
             }

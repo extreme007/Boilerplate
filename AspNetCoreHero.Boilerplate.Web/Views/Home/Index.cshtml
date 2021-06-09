@@ -4,7 +4,7 @@
 
 @using AspNetCoreHero.Boilerplate.Web.Models
 @model HomeViewModel
-@*@await Html.PartialAsync("~/Views/Partials/_Partial_HomeBanner.cshtml")*@
+
 @await Html.PartialAsync("~/Views/Partials/_Partial_Rank1.cshtml", Model.Rank1)
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_BreakingNews.cshtml", Model.BreakingNews)
@@ -23,7 +23,7 @@
 
 <section class="buy-now">
     <div class="container">
-        @*<div class="stock-slider">
+        <div class="stock-slider">
                 <div class="stock-slider-item">
                     <h4>OIL</h4>
                     <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
@@ -52,7 +52,7 @@
                     <h4>OIL</h4>
                     <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
                 </div>
-            </div>*@
+            </div>
     </div>
     <div class="sectionoverlay"></div>
 </section>

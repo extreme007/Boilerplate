@@ -1,17 +1,20 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Sidebar;
 @using AspNetCoreHero.Boilerplate.Web.Models
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Breadcrumb;
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.RelatedArticle;
 @model ArticleViewModel
 @{
     Layout = "_Layout";
 }
 
-@await Html.PartialAsync("~/Views/Partials/_Partial_Breadcumb.cshtml",Model.ArticleCategory)
+@(await Component.InvokeAsync<BreadcrumbViewComponent>(new { parentId = Model.CategoryId, isArticle =true}))
 <section class="page-cover">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
                 <div class="cover-content">
                     <h1>@Model?.Title</h1>
+
                     <div class="article__meta">
                         <a class="source" href="@Model.SourceLink">
                             <img class="image" src="@Model.SourceImage" alt="@Model.SourceName">
@@ -19,11 +22,13 @@
                         <time> @Model?.PostedDatetimeString </time>
                         <a><i class="icon-chat"></i> @Model?.CommentCount </a>
                     </div>
+                  @*  @(await Component.InvokeAsync<BreadcumbViewComponent>(Model.CategoryId))*@
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <section class="item-content">
     <div class="container">
         <div class="row">
@@ -33,9 +38,9 @@
                         @Html.Raw(Model?.Content)
                     </div>
                     @*<blockquote>
-                            <p>Was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            <div class="sectionoverlay"></div>
-                        </blockquote>*@
+                <p>Was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="sectionoverlay"></div>
+            </blockquote>*@
                     <div class="bot-source">
                         <a href="@Model.SourceLink" target="_blank"><span class="name">Nguồn @Model.SourceName:</span><span class="source">@Model.SourceLink</span> </a>
                     </div>
@@ -50,10 +55,13 @@
                             <a href="#" class="tag-blue tag">#@item</a>
                         }
                     </div>
-                    @*@await Html.PartialAsync("~/Views/Partials/_Partial_CommentBox.cshtml")
-                    @await Html.PartialAsync("~/Views/Partials/_Partial_CommentForm.cshtml")*@
 
+
+                    @*@await Html.PartialAsync("~/Views/Partials/_Partial_CommentBox.cshtml")
+            @await Html.PartialAsync("~/Views/Partials/_Partial_CommentForm.cshtml")*@
                 </div>
+
+                @(await Component.InvokeAsync<RelatedArticleViewComponent>(Model))
             </div>
             <div class="col-md-4 col-sm-12">
                 @(await Component.InvokeAsync<SidebarViewComponent>())

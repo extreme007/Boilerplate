@@ -11,8 +11,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         public int Page { get; set; }
         public int TotalPages { get; set; }
         public long TotalCount { get; set; }
-        //public bool HasPreviousPage { get; }
-        //public bool HasNextPage { get; }
+        public int CategoryId { get; set; }
     }
 
     public class ArticleViewModel
@@ -47,7 +46,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         {
             get
             {
-                return string.Format("/{0}/{1}-{2}", this.ArticleCategory.Slug, this.Slug, this.Id);
+                return string.Format("/{0}-{1}.html",this.Slug, this.Id);
             }
         }
         public string PostedDatetimeString {

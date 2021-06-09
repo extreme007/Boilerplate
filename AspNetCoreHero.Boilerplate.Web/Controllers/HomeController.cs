@@ -19,8 +19,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new HomeViewModel();
-            //var response = await _mediator.Send(new GetAllArticleCachedQuery());
-            var response = await _mediator.Send(new GetAllArticlesNoCacheQuery());
+            var response = await _mediator.Send(new GetAllArticleCachedQuery());
+            //var response = await _mediator.Send(new GetAllArticlesNoCacheQuery());
             if (response.Succeeded)
             {
                 var data = response.Data;
@@ -28,7 +28,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                 model.TopNew = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsHot == false && x.IsRank1 == false).Take(10));
                 model.Rank1 = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsRank1 == true).Take(4));
                 model.TheGioi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 4).Take(6));
-                model.XaHoi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 5).Take(50));
+                model.XaHoi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 5));
                 model.TheThao = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 21).Take(6));
                 model.PhapLuat = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 29).Take(6));
                 model.GiaiTri = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 25).Take(6));

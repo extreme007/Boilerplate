@@ -17,9 +17,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
     [AllowAnonymous]
     public class CategoryController : BaseController<CategoryController>
     {
-        [Route("{slug}")]
+        [Route("{slug}", Name = "category")]
         public async Task<IActionResult> Index(string slug,int? page)
         {
+            if (string.IsNullOrEmpty(slug))
+            {
+                ViewData["Category"] = null;
+                return RedirectToAction("Index", "Home");
+            }
             int pageNumberRequest = page ?? 1;
             int pageSizeRequest =  _configuration.GetValue<int>("PageSize");
             var category = await GetIdBySlug(slug);
@@ -27,7 +32,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
             ArticlePagingViewModel result = new ArticlePagingViewModel();
             if(category != null)
             {
-                var groupCategoryId = category.ParentId == 3 ? category.Id : category.ParentId;
+                var groupCategoryId = category.ParentId == null ? category.Id : category.ParentId;
                 var response = await _mediator.Send(new GetAllArticleQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
                 if (response.Succeeded)
                 {
@@ -35,6 +40,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                     result.TotalPages = response.TotalPages;
                     result.TotalCount = response.TotalCount;
                     result.Data = _mapper.Map<List<ArticleViewModel>>(response.Data);
+                    result.CategoryId = category.Id;
+                    ViewData["Category"] = category;
                 }
                 return View(result);
             }
@@ -53,7 +60,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
             List<ArticleViewModel> result = new List<ArticleViewModel>();
             if(category != null)
             {
-                var groupCategoryId = category.ParentId == 3 ? category.Id : category.ParentId;
+                var groupCategoryId = category.ParentId == null? category.Id : category.ParentId;
                 var response = await _mediator.Send(new GetAllArticleQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
                 if (response.Succeeded)
                 {

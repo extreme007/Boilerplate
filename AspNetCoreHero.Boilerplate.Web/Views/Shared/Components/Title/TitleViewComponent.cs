@@ -2,7 +2,7 @@
 
 namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Title
 {
-    public class NavigationBarViewComponent : ViewComponent
+    public class TitleViewViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

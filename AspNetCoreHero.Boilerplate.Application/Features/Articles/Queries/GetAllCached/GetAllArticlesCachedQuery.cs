@@ -30,7 +30,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
         public async Task<Result<List<GetAllArticleCachedResponse>>> Handle(GetAllArticleCachedQuery request, CancellationToken cancellationToken)
         {
             var articleList = await _articleCache.GetCachedListAsync("ArticleCategory");
-            var mappedArticles = _mapper.Map<List<GetAllArticleCachedResponse>>(articleList.Where(x=>x.IsPublished ==true && x.ThumbImage != null));
+            var mappedArticles = _mapper.Map<List<GetAllArticleCachedResponse>>(articleList.Where(x=>x.IsPublished ==true && x.ThumbImage != null).OrderByDescending(x => x.PostedDatetime));
             return Result<List<GetAllArticleCachedResponse>>.Success(mappedArticles);
         }
     }

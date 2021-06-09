@@ -1,6 +1,10 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Models
 @using AspNetCoreHero.Boilerplate.Web.Extensions
 @model FooterViewModel
+@{ 
+    var totalCategory = Model.Category.Count;
+    var listItemSub =(int) totalCategory / 2;
+}
 <footer>
     <div class="footer-content">
         <div class="footer-slider">
@@ -38,34 +42,35 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="categories">
                             <h3>Chuyên mục</h3>
-                            <div class="col-sm-6 col-xs-12">
-                                <ul>
-                                    @foreach (var subItem in Model.Category.Take(5))
-                                    {
-                                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <ul>
-                                    @foreach (var subItem in Model.Category.Skip(5).Take(5))
-                                    {
-                                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
-                                    }
-                                </ul>
-                            </div>
-                            @*@foreach (var item in Model.Category.Batch(2))
-        {
-            <div class="col-sm-6 col-xs-12">
-                <ul>
-                    @foreach (var subItem in item)
-                    {
-                        <li><a href="/@subItem.Slug">@subItem.Title</a></li>
-                    }
 
-                </ul>
-            </div>
-        }*@
+                            <div class="col-sm-6 col-xs-12">
+                                    <ul>
+                                        @foreach (var subItem in Model.Category.Take(listItemSub))
+                                        {
+                                            <li><a href="/@subItem.Slug">@subItem.Title</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <ul>
+                                        @foreach (var subItem in Model.Category.Skip(listItemSub).Take(totalCategory - listItemSub))
+                                        {
+                                            <li><a href="/@subItem.Slug">@subItem.Title</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            @*@foreach (var item in Model.Category.Batch(2))
+                            {
+                                <div class="row">
+                                    @foreach (var subItem in item)
+                                    {
+                                        <div class="col-sm-6 col-xs-12">
+                                            <a href="/@subItem.Slug">@subItem.Title</a>
+                                        </div>
+                                    }
+
+                                </div>
+                            }*@
                         </div>
                     </div>
 
@@ -90,7 +95,7 @@
                     <div class="container">
                         <span>Copyright © 2021 <a href="/">http://tintin247.com/</a> - All Rights reserved</span>
                     </div>
-                
+
                 </div>
             </div>
         </div>

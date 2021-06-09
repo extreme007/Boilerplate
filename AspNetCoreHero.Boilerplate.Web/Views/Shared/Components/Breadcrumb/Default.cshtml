@@ -1,0 +1,38 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@model BreadcrumbViewModel
+@if (Model != null && Model.ListBreadcrumb.Count > 0)
+{
+    <div class="breadcrumb_wrapper">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        @foreach (var item in Model.ListBreadcrumb)
+                        {
+                            if (item == Model.ListBreadcrumb.Last() && Model.IsArticle == false)
+                            {
+                                <li class="breadcrumb-item active" aria-current="page">@item.Title</li>
+                            }
+                            else
+                            {
+                                <li class="breadcrumb-item" aria-current="page"><a href="/@item.Slug">@item.Title</a></li>
+                            }
+
+                        }
+                    </ul>
+                    <a id="searchtoggl" class="searchtoggle"><i class="fa fa-search" aria-hidden="true"></i></a>
+                </nav>
+                <div id="searchbar" class="searchbar">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search" placeholder="Search Now">
+                            <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+}

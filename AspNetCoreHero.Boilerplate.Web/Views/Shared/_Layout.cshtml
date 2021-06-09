@@ -16,7 +16,7 @@
         <img src="~/images/Eclipse.gif" class="iconLoading"/>
     </div>
     @(await Component.InvokeAsync<HeaderViewComponent>())
-    @(await Component.InvokeAsync<NavigationBarViewComponent>())
+    @*@(await Component.InvokeAsync<NavigationBarViewComponent>())*@
     @RenderBody()
     @(await Component.InvokeAsync<FooterViewComponent>())
     <div id="back-to-top">

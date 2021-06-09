@@ -1,21 +1,27 @@
-﻿@*@using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
-@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Culture;
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-@inject IHtmlLocalizer<SharedResource> localizer*@
-
+﻿
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.NavigationBar;
 <header>
-    <div class="upper-head clearfix">
+    <div class="upper-head upper-head-1 clearfix">
         <div class="container">
             <div class="header-date">
                 <p><i class="icon-clock"></i> @DateTime.Now.ToString("dddd, dd/MM/yyyy")</p>
-              @*  <p><i class="icon-cloud"></i> Hollywood, America</p>*@
+                @*  <p><i class="icon-cloud"></i> Hollywood, America</p>*@
             </div>
             <ul class="header-social-links pull-right">
                 @*<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>*@
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>*@
             </ul>
+
+
+
         </div>
     </div>
+    @(await Component.InvokeAsync<NavigationBarViewComponent>())
+    <div class="logo">
+        <a href="/"><img alt="Image" src="/images/logo1.png"></a>
+        @*<p>A Complete blog & magazine HTML Template</p>*@
+    </div>
+
+
 </header>

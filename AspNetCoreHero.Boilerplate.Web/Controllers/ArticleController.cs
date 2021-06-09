@@ -12,18 +12,17 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
     [AllowAnonymous]
     public class ArticleController : BaseController<ArticleController>
     {
-        [Route("{categorySlug}/{slug}-{id}", Name = "article")]
-        public async Task<IActionResult> Index(string categorySlug, string slug,string id)
+        [Route("{slug}-{id}.html", Name = "article")]
+        public async Task<IActionResult> Index(string slug,string id)
         {
             var viewModel = new ArticleViewModel();
             if (!string.IsNullOrEmpty(slug))
             {
-                //var slugSplit = slug.Split('-');
-                //var articleId = slugSplit[slugSplit.Count() - 1];
                 var response = await _mediator.Send(new GetArticleByIdQuery { Id = Convert.ToInt32(id) });
                 if (response.Succeeded)
                 {
                     viewModel = _mapper.Map<ArticleViewModel>(response.Data);
+                    ViewData["Category"] = viewModel.ArticleCategory;
                 }
             }
 

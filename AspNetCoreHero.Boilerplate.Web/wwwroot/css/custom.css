@@ -94,3 +94,12 @@
     line-height: 1.7;
     margin-bottom: 25px;
 }
+
+
+/*.sub-menu li.active {
+    color: #f75656;
+}*/
+
+.nav.navbar-nav li ul li.active>a{
+    color: #f75656;
+}
