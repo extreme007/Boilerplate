@@ -63,7 +63,6 @@ namespace AspNetCoreHero.Boilerplate.Web
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
-
             // Add Hangfire services.
             services.AddHangfire(configuration => configuration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
@@ -79,7 +78,14 @@ namespace AspNetCoreHero.Boilerplate.Web
                 }));
 
             // Add the processing server as IHostedService
-          // services.AddHangfireServer();
+            // services.AddHangfireServer();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+               // options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,9 +110,8 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseAuthentication();
   
             app.UseAuthorization();
-
             app.UseHangfireDashboard();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(

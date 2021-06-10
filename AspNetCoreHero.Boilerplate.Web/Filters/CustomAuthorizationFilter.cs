@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreHero.Boilerplate.Web.Extensions
+namespace AspNetCoreHero.Boilerplate.Web.Filters
 {
     public class CustomAuthorizationFilter : ActionFilterAttribute,IAuthorizationFilter
     {
