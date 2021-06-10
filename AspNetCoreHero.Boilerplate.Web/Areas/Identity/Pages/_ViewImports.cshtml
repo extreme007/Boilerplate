@@ -2,6 +2,13 @@
 @using AspNetCoreHero.Boilerplate.Web.Areas.Identity
 @using AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages
 @using AspNetCoreHero.Boilerplate.Web
+@using AspNetCoreHero.Boilerplate.Application.Constants
 @using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models
+@using AspNetCoreHero.Boilerplate.Web.Models
+@using AspNetCoreHero.Boilerplate
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authorization
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@inject IAuthorizationService AuthorizationService
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AspNetCoreHero.Boilerplate.Web

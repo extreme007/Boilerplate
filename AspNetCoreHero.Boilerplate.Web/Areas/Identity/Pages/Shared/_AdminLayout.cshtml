@@ -1,7 +1,7 @@
-﻿@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Footer;
+﻿@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.FooterAdmin;
 @using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Title;
-@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Sidebar;
-@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Header;
+@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.SidebarAdmin;
+@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.HeaderAdmin;
 @using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.Logout;
 @using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.FormModal;
 @using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Views.Shared.Components.ImageModal;
@@ -21,8 +21,8 @@
         <div class="loader-section"></div>
     </div>
     <div class="wrapper">
-        @(await Component.InvokeAsync<HeaderViewComponent>())
-        @(await Component.InvokeAsync<SidebarViewComponent>())
+        @(await Component.InvokeAsync<HeaderAdminViewComponent>())
+        @(await Component.InvokeAsync<SidebarAdminViewComponent>())
         <div class="content-wrapper" id="contentWrapper">
             <div class="content">
                 <div class="container-fluid">
@@ -34,7 +34,7 @@
         @(await Component.InvokeAsync<LogoutViewComponent>())
         @(await Component.InvokeAsync<FormModalViewComponent>())
         @(await Component.InvokeAsync<ImageModalViewComponent>())
-        @(await Component.InvokeAsync<FooterViewComponent>())
+        @(await Component.InvokeAsync<FooterAdminViewComponent>())
     </div>
     <partial name="_AdminScripts" />
     @await Component.InvokeAsync("Notyf")

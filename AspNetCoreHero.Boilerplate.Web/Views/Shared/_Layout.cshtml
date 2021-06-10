@@ -1,6 +1,5 @@
 ﻿@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Header;
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Footer;
-@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.NavigationBar;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 <head>
@@ -8,12 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>BlogMag - A Complete blog & magazine HTML Template</title>
+    <title>Tintin247 - Tổng hợp tin tức hằng ngày</title>
+    <partial name="_MetaData" />
     <partial name="_Styles" />
 </head>
 <body>
     <div class="loader" style="display:none;">
-        <img src="~/images/Eclipse.gif" class="iconLoading"/>
+        <img src="~/images/Eclipse.gif" class="iconLoading" />
     </div>
     @(await Component.InvokeAsync<HeaderViewComponent>())
     @*@(await Component.InvokeAsync<NavigationBarViewComponent>())*@
@@ -22,8 +22,11 @@
     <div id="back-to-top">
         <a href="#"></a>
     </div>
-
     <partial name="_Scripts" />
+    <partial name="_ShareFacebook" />
+    <partial name="_ShareZalo" />
+    <partial name="_GoogleAnalytics" />
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

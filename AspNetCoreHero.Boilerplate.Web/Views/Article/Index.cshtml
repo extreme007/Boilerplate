@@ -45,9 +45,17 @@
                         <a href="@Model.SourceLink" target="_blank"><span class="name">Nguồn @Model.SourceName:</span><span class="source">@Model.SourceLink</span> </a>
                     </div>
                     <div class="share-buttons">
-                        <a href="#" class="btn-large btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
-                        <p> <span>350</span> View</p>
-                        <a href="#" class="btn-large btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Share on Twitter</a>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Url.PageLink()" class="btn-large btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
+                            </div>
+                            <div class="col-md-4">
+                                <p> <span>@Model.ViewCount</span> View</p>
+                            </div>
+                            <div class="col-md-4">
+                                 <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="item-tags">
                         @foreach (var item in Model.Tags.Split(','))
