@@ -52,7 +52,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         [Route("LoadMore/{slug}")]
         public async Task<ActionResult> GetDataArticle(string slug,int? page)
         {
-            Thread.Sleep(500);
+            //Thread.Sleep(500);
             int pageNumberRequest = page ?? 1;
             int pageSizeRequest = _configuration.GetValue<int>("PageSize");
             var category = await GetIdBySlug(slug);

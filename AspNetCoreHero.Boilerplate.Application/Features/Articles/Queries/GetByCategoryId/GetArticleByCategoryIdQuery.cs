@@ -47,7 +47,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetBy
             var article = await _articleCache.GetCachedListAsync("ArticleCategory");
             
             Func<Article, bool> expressionWhere = x => x.IsPublished == true && x.ThumbImage != null && x.GroupCategoryId == query.GroupCategoryId && x.CategoryId == query.CategoryId;
-            var listFilter = article.Where(expressionWhere);
+            var listFilter = article.Where(expressionWhere).OrderByDescending(x=>x.PostedDatetime);
             var total = listFilter.Count();
             var listResult = listFilter.Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize);
             var mappedArticle = _mapper.Map<List<GetAllArticleCachedResponse>>(listResult);
