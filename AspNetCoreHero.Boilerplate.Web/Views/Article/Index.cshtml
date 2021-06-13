@@ -22,7 +22,7 @@
                         <time> @Model?.PostedDatetimeString </time>
                         <a><i class="icon-chat"></i> @Model?.CommentCount </a>
                     </div>
-                  @*  @(await Component.InvokeAsync<BreadcumbViewComponent>(Model.CategoryId))*@
+                    @*  @(await Component.InvokeAsync<BreadcumbViewComponent>(Model.CategoryId))*@
                 </div>
             </div>
         </div>
@@ -38,9 +38,9 @@
                         @Html.Raw(Model?.Content)
                     </div>
                     @*<blockquote>
-                <p>Was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="sectionoverlay"></div>
-            </blockquote>*@
+                            <p>Was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            <div class="sectionoverlay"></div>
+                        </blockquote>*@
                     <div class="bot-source">
                         <a href="@Model.SourceLink" target="_blank"><span class="name">Nguồn @Model.SourceName:</span><span class="source">@Model.SourceLink</span> </a>
                     </div>
@@ -53,7 +53,7 @@
                                 <p> <span>@Model.ViewCount</span> View</p>
                             </div>
                             <div class="col-md-4">
-                                 <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>
+                                <div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
 
 
                     @*@await Html.PartialAsync("~/Views/Partials/_Partial_CommentBox.cshtml")
-            @await Html.PartialAsync("~/Views/Partials/_Partial_CommentForm.cshtml")*@
+                        @await Html.PartialAsync("~/Views/Partials/_Partial_CommentForm.cshtml")*@
                 </div>
 
                 @(await Component.InvokeAsync<RelatedArticleViewComponent>(Model))
@@ -77,3 +77,8 @@
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <partial name="_ShareFacebook" />
+    <partial name="_ShareZalo" />
+}

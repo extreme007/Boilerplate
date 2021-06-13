@@ -31,7 +31,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public async Task<Article> GetByIdAsync(int articleId)
         {
-            return await _repository.Entities.Where(p => p.Id == articleId).FirstOrDefaultAsync();
+            return await _repository.Entities.AsNoTracking().Where(p => p.Id == articleId).FirstOrDefaultAsync();
         }
 
         public async Task<List<Article>> GetListAsync(string includeProperties = "")
@@ -44,7 +44,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
                     queryable = queryable.Include(includeProperties);
                 }
             }
-            return await queryable.ToListAsync();
+            return await queryable.AsNoTracking().ToListAsync();
         }
 
         public async Task<int> InsertAsync(Article article)

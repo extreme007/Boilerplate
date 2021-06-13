@@ -100,7 +100,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetAl
             //    expressionWhere = expressionWhere.And(x=>x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
             //}
             expressionWhere = expressionWhere.And(x => x.GroupCategoryId == request.GroupCategoryId && x.CategoryId == request.CategoryId);
-            var paginatedList = await _repository.Article.Include("ArticleCategory").OrderByDescending(x=>x.PostedDatetime).Where(expressionWhere)
+            var paginatedList = await _repository.Article.Include("ArticleCategory").AsNoTracking().OrderByDescending(x=>x.PostedDatetime).Where(expressionWhere)
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return paginatedList;

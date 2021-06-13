@@ -2810,7 +2810,7 @@ section.content-style-1, section.blog-content-2{
   width: 100%;
 }
 #dark .popular-item, #dark .post-categories li, #dark .item-small{
-  border-bottom-color: #7777;
+  border-bottom-color: #777;
 }
 #dark ul.post-category{
   width: 100%;
@@ -2844,10 +2844,10 @@ section.content-style-1, section.blog-content-2{
   background: #23282D;
 }
 #dark .sidebar-title h3:before{
-  background: #7777;
+  background: #777;
 }
 #dark .item-medium h3{
-  border-color: #7777;
+  border-color: #777;
 }
 #dark .header-links-2 a:hover{
   opacity: 0.8;
@@ -4540,7 +4540,8 @@ p.lost_password{
   .top_trending .item-large-content,
   .no-tag .categories .item-large-content,
   .no-tag .top_trending .item-large-content{
-    top: 100%;
+    /*top: 100%;*/
+    top: 0;
     height: 100%;
   }
   .top_trending_outer

@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div id="listArticle">
-                        @await Html.PartialAsync("_Partial_ArticleItem.cshtml", Model.Data.Where(x => x.Id != firstItem.Id));
+                        @await Html.PartialAsync("_Partial_ArticleItem.cshtml", Model.Data.Where(x => x.Id != firstItem.Id))
                     </div>
                     <div id="progressmarker"></div>
                 }

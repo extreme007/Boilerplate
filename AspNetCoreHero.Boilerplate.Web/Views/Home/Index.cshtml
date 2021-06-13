@@ -9,50 +9,51 @@
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_BreakingNews.cshtml", Model.BreakingNews)
 
-@await Html.PartialAsync("~/Views/Partials/_Partial_TopHot.cshtml", Model.TopHot)
+@*@await Html.PartialAsync("~/Views/Partials/_Partial_TopHot.cshtml", Model.TopHot)*@
+@await Html.PartialAsync("~/Views/Partials/_Partial_Top.cshtml", Model.TopHot, new ViewDataDictionary(ViewData) { { "Title", "Tin Nóng" } })
 
-<div class="ad1">
+@*<div class="ad1">
     <div class="container">
         <div class="ad1-content">
             <img src="images/pd1.jpg" alt="image">
         </div>
     </div>
-</div>
-
-@await Html.PartialAsync("~/Views/Partials/_Partial_TopNew.cshtml", Model.TopNew)
+</div>*@
+@await Html.PartialAsync("~/Views/Partials/_Partial_Top.cshtml", Model.TopNew, new ViewDataDictionary(ViewData) { { "Title", "Tin Mới" } })
+@*@await Html.PartialAsync("~/Views/Partials/_Partial_TopNew.cshtml", Model.TopNew)*@
 
 <section class="buy-now">
     <div class="container">
         <div class="stock-slider">
-                <div class="stock-slider-item">
-                    <h4>OIL</h4>
-                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>SILVER</h4>
-                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>DOLLAR</h4>
-                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>OIL</h4>
-                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>GOLD</h4>
-                    <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>WORLD BANK</h4>
-                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
-                <div class="stock-slider-item">
-                    <h4>OIL</h4>
-                    <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
-                </div>
+            <div class="stock-slider-item">
+                <h4>OIL</h4>
+                <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
             </div>
+            <div class="stock-slider-item">
+                <h4>SILVER</h4>
+                <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+            <div class="stock-slider-item">
+                <h4>DOLLAR</h4>
+                <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+            <div class="stock-slider-item">
+                <h4>OIL</h4>
+                <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+            <div class="stock-slider-item">
+                <h4>GOLD</h4>
+                <p>10100.93 <span class="stock-red"><i class="fa fa-chevron-down" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+            <div class="stock-slider-item">
+                <h4>WORLD BANK</h4>
+                <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+            <div class="stock-slider-item">
+                <h4>OIL</h4>
+                <p>10100.93 <span class="stock-green"><i class="fa fa-chevron-up" aria-hidden="true"></i> 104(+33%)</span></p>
+            </div>
+        </div>
     </div>
     <div class="sectionoverlay"></div>
 </section>

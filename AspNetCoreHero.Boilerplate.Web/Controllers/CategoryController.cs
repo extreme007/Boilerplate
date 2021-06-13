@@ -33,7 +33,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
             if(category != null)
             {
                 var groupCategoryId = category.ParentId == null ? category.Id : category.ParentId;
-                var response = await _mediator.Send(new GetAllArticleQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
+                var response = await _mediator.Send(new GetArticleByCategoryIdQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
                 if (response.Succeeded)
                 {
                     result.Page = response.Page;
@@ -61,7 +61,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
             if(category != null)
             {
                 var groupCategoryId = category.ParentId == null? category.Id : category.ParentId;
-                var response = await _mediator.Send(new GetAllArticleQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
+                var response = await _mediator.Send(new GetArticleByCategoryIdQuery(pageNumberRequest, pageSizeRequest, groupCategoryId, category.Id));
                 if (response.Succeeded)
                 {
                     result = _mapper.Map<List<ArticleViewModel>>(response.Data);
