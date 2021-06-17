@@ -59,7 +59,15 @@ namespace AspNetCoreHero.Boilerplate.Web
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddDistributedMemoryCache();
+
+            //services.AddDistributedMemoryCache();
+
+            // Register the RedisCache service
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = _configuration.GetSection("Redis")["ConnectionString"];
+            });
+
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IViewRenderService, ViewRenderService>();

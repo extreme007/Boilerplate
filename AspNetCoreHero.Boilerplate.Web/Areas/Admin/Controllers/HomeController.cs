@@ -1,5 +1,5 @@
-﻿using Abot2.Core;
-using Abot2.Poco;
+﻿//using Abot2.Core;
+//using Abot2.Poco;
 using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using AspNetCoreHero.Boilerplate.Application.Features.ArticleCategory.Queries.GetAllCached;
@@ -216,16 +216,16 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             return document.QuerySelector("body").InnerHtml;
         }
 
-        private static async Task<CrawledPage> PageRequester(string uri)
-        {
-            var config = new CrawlConfiguration
-            {
-                MaxPagesToCrawl = 1,
-                MinCrawlDelayPerDomainMilliSeconds = 3000
-            };
-            var pageRequester = new PageRequester(config, new WebContentExtractor());
+        //private static async Task<CrawledPage> PageRequester(string uri)
+        //{
+        //    var config = new CrawlConfiguration
+        //    {
+        //        MaxPagesToCrawl = 1,
+        //        MinCrawlDelayPerDomainMilliSeconds = 3000
+        //    };
+        //    var pageRequester = new PageRequester(config, new WebContentExtractor());
 
-            return await pageRequester.MakeRequestAsync(new Uri(uri));
-        }
+        //    return await pageRequester.MakeRequestAsync(new Uri(uri));
+        //}
     }
 }
