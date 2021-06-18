@@ -18,5 +18,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
         public List<ArticleViewModel> GiaiTri { get; set; }
         public List<ArticleViewModel> PhapLuat { get; set; }
         public List<ArticleViewModel> KhoaHoc { get; set; }
+        public List<ArticleViewModel> VanHoa { get; set; }
+        public List<ArticleViewModel> KinhTe { get; set; }
+        public List<ArticleViewModel> GiaoDuc { get; set; }
+        public List<ArticleViewModel> CongNghe { get; set; }
+        public List<ArticleViewModel> DoiSong { get; set; }
+        public List<ArticleViewModel> XeCo { get; set; }
+        public List<ArticleViewModel> NhaDat { get; set; }
     }
 }

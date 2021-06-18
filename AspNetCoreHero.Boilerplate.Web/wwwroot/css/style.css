@@ -1146,13 +1146,14 @@ ul.header-social-links li {
 }
 .searchbar{
   display: none;
-  position: absolute;
+  /*position: absolute;*/
   z-index: 999;
-  top: 100%;
-  right: 0;
+/*  top: 100%;
+  right: 0;*/
   background: #303e4b;
-  padding: 10px;
-  width: 300px;
+  /*padding: 10px;*/
+  width: 100%;
+  float:right;
 }
 .searchbar i{
   background: #f75656;
@@ -1176,7 +1177,7 @@ ul.header-social-links li {
   border: none;
 }
 a.searchtoggle{
-  position: absolute;
+  /*position: absolute;*/
   right: 0;
   top: 15px;
   z-index: 999;
@@ -2719,6 +2720,7 @@ header .logo img{
 }
 .upper-head-1{
   padding: 10px 0;
+  /*height:45px;*/
 }
 .upper-head-1 p, .upper-head-1 ul li a{
   font-size: 15px;
@@ -4467,7 +4469,7 @@ p.lost_password{
     padding: 5px;
   }
   .categories .mix{
-    margin-top: 35px;
+    margin-top: 50px;
   }
   .blog-item{
     margin-bottom: 320px;
@@ -4571,7 +4573,7 @@ p.lost_password{
     display: block;
   }
   .header-date, header ul.header-social-links{
-    width: 100%;
+    /*width: 100%;*/
     text-align: center;
   }
   .header-date p{
@@ -4582,7 +4584,8 @@ p.lost_password{
     top: 0;
   }
   .categories .item-large-content{
-    top: 100%;
+    /*top: 100%;*/
+    top: 0;
   }
   .item-small-content{
     margin-bottom: 0;

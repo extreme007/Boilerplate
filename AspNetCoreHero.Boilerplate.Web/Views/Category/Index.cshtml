@@ -69,13 +69,15 @@
     $(document).ready(function () {
         //GetData();
         $(window).scroll(function () {
-            var hT = $('#progressmarker').offset().top,
-                hH = $('#progressmarker').outerHeight(),
-                wH = $(window).height(),
-                wS = $(this).scrollTop();
+            if ($('#progressmarker').length > 0) {
+                var hT = $('#progressmarker').offset().top,
+                    hH = $('#progressmarker').outerHeight(),
+                    wH = $(window).height(),
+                    wS = $(this).scrollTop();
 
-            if (wS > (hT + hH - wH)) {
-                GetData();
+                if (wS > (hT + hH - wH)) {
+                    GetData();
+                }
             }
         });
     });

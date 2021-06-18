@@ -60,9 +60,19 @@
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.TheGioi, new ViewDataDictionary(ViewData) { { "Title", "Thế Giới" } })
 @await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.XaHoi, new ViewDataDictionary(ViewData) { { "Title", "Xã Hội" } })
-@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.TheThao, new ViewDataDictionary(ViewData) { { "Title", "Thể Thao" } })
-@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.PhapLuat, new ViewDataDictionary(ViewData) { { "Title", "Pháp Luật" } })
-@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.GiaiTri, new ViewDataDictionary(ViewData) { { "Title", "Giải Trí" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti_R.cshtml", Model.VanHoa, new ViewDataDictionary(ViewData) { { "Title", "Văn Hóa" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.KinhTe, new ViewDataDictionary(ViewData) { { "Title", "Kinh Tế" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti_R.cshtml", Model.GiaoDuc, new ViewDataDictionary(ViewData) { { "Title", "Giáo Dục" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.TheThao, new ViewDataDictionary(ViewData) { { "Title", "Thể Thao" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti_R.cshtml", Model.GiaiTri, new ViewDataDictionary(ViewData) { { "Title", "Giải Trí" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.PhapLuat, new ViewDataDictionary(ViewData) { { "Title", "Pháp Luật" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti_R.cshtml", Model.CongNghe, new ViewDataDictionary(ViewData) { { "Title", "Công nghệ" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.KhoaHoc, new ViewDataDictionary(ViewData) { { "Title", "Khoa Học" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti.cshtml", Model.DoiSong, new ViewDataDictionary(ViewData) { { "Title", "Đời Sống" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategory.cshtml", Model.XeCo, new ViewDataDictionary(ViewData) { { "Title", "Xe Cộ" } })
+@await Html.PartialAsync("~/Views/Partials/_Partial_HomeCategoryMulti_R.cshtml", Model.NhaDat, new ViewDataDictionary(ViewData) { { "Title", "Nhà Đất" } })
+
+
 
 @section Scripts
 {

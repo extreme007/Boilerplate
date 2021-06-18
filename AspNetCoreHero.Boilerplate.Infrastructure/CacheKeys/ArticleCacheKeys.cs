@@ -9,5 +9,6 @@
         public static string GetKey(int articleId) => $"Article-{articleId}";
 
         public static string GetDetailsKey(int articleId) => $"ArticleDetails-{articleId}";
+        public static string ListKeyByGroupCategoryId(int groupCategoryId) => $"ArtilceList-G{groupCategoryId}";
     }
 }

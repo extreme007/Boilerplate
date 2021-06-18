@@ -25,23 +25,6 @@
                 var firstItem = item.FirstOrDefault(x => x.Image != null);
                 <div class="row mix @item.ToList().FirstOrDefault().ArticleCategory.Slug">
                     <div class="col-sm-6" style="margin-bottom:20px;">
-                        <div class="item-large">
-                            <div class="item-large-image">
-                                <img alt="@firstItem.Title" src="@firstItem.Image">
-                                <div class="image-overlay"></div>
-                            </div>
-                            <div class="image-overlay"></div>
-                            <div class="item-large-content">
-                                <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
-                                <p>@firstItem.Description</p>
-                                <div class="author-detail">
-                                    <p><i class="icon-clock"></i> @firstItem.PostedDatetimeString</p>
-                                    <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
                         @foreach (var subItem in item.Where(x => x.Id != firstItem.Id).Take(3))
                         {
                             <div class="item-small">
@@ -60,6 +43,24 @@
                         }
 
                     </div>
+                    <div class="col-sm-6">
+                        <div class="item-large">
+                            <div class="item-large-image">
+                                <img alt="@firstItem.Title" src="@firstItem.Image">
+                                <div class="image-overlay"></div>
+                            </div>
+                            <div class="image-overlay"></div>
+                            <div class="item-large-content">
+                                <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
+                                <p>@firstItem.Description</p>
+                                <div class="author-detail">
+                                    <p><i class="icon-clock"></i> @firstItem.PostedDatetimeString</p>
+                                    <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             }
         }

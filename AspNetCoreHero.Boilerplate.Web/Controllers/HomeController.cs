@@ -29,9 +29,17 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                 model.Rank1 = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.IsRank1 == true).Take(4));
                 model.TheGioi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 4).Take(6));
                 model.XaHoi = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 5));
-                model.TheThao = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 21).Take(6));
-                model.PhapLuat = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 29).Take(6));
-                model.GiaiTri = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 25).Take(6));
+                model.VanHoa = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 9));
+                model.KinhTe = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 13));
+                model.GiaoDuc = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 18));
+                model.TheThao = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 21));
+                model.GiaiTri = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 25));
+                model.PhapLuat = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 29));
+                model.CongNghe = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 32));
+                model.KhoaHoc = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 35).Take(6));
+                model.DoiSong = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 36));
+                model.XeCo = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 40).Take(6));
+                model.NhaDat = _mapper.Map<List<ArticleViewModel>>(data.Where(x => x.GroupCategoryId == 41));
 
                 model.BreakingNews = _mapper.Map<List<ArticleViewModel>>(data.Take(10));
             }    

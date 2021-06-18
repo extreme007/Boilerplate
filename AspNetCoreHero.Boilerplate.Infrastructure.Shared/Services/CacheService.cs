@@ -24,7 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services
             {
                 _cacheOptions = new DistributedCacheEntryOptions
                 {
-                    AbsoluteExpiration = DateTime.Now.AddHours(_cacheConfig.AbsoluteExpirationInMinutes),
+                    AbsoluteExpiration = DateTime.Now.AddMinutes(_cacheConfig.AbsoluteExpirationInMinutes),
                     SlidingExpiration = TimeSpan.FromMinutes(_cacheConfig.SlidingExpirationInMinutes)
                 };
             }

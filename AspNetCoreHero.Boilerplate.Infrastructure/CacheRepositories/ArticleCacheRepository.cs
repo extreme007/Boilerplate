@@ -7,6 +7,7 @@ using AspNetCoreHero.Extensions.Caching;
 using AspNetCoreHero.ThrowR;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
@@ -23,13 +24,28 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             _articleRepository = articleRepository;
         }
 
+        public async Task<List<Article>> GetByGroupCategoryIdAsync(int groupCategoryId,string includeProperties = "")
+        {
+            string cacheKey = ArticleCacheKeys.ListKeyByGroupCategoryId(groupCategoryId);
+            var articleList = await _cacheService.GetAsync<List<Article>>(cacheKey);
+            if (articleList == null)
+            {
+                var listResult = await GetCachedListAsync(includeProperties);
+                articleList = listResult.Where(x => x.GroupCategoryId == groupCategoryId).ToList();
+                await _cacheService.SetAsync(cacheKey, articleList);
+            }
+            return articleList;
+        }
+
         public async Task<Article> GetByIdAsync(int articleId)
         {
             string cacheKey = ArticleCacheKeys.GetKey(articleId);
             var article = await _cacheService.GetAsync<Article>(cacheKey);
             if (article == null)
             {
-                article = await _articleRepository.GetByIdAsync(articleId);
+                var listArticles = await GetCachedListAsync("ArticleCategory");
+                //article = await _articleRepository.GetByIdAsync(articleId);
+                article = listArticles.FirstOrDefault(x => x.Id == articleId);
                 Throw.Exception.IfNull(article, "Article", "No Article Found");
                 await _cacheService.SetAsync(cacheKey, article);
             }

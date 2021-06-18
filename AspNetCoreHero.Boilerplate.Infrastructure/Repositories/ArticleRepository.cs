@@ -32,7 +32,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public async Task<Article> GetByIdAsync(int articleId)
         {
-            return await _repository.Entities.AsNoTracking().Where(p => p.Id == articleId).FirstOrDefaultAsync();
+            return await _repository.Entities.AsNoTracking().FirstOrDefaultAsync(p => p.Id == articleId);
         }
 
         public async Task<List<Article>> GetListAsync(string includeProperties = "")
