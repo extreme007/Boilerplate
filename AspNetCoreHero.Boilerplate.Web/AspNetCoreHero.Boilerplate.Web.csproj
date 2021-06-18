@@ -73,12 +73,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Abot2">
-      <HintPath>bin\Debug\net5.0\Abot2.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\admin\images\account-deactivated.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

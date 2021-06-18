@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
@@ -13,24 +14,24 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
   
     public class ArticleCacheRepository : IArticleCacheRepository
     {
-        private readonly IDistributedCache _distributedCache;
+        private readonly ICacheService _cacheService;
         private readonly IArticleRepository _articleRepository;
 
-        public ArticleCacheRepository(IDistributedCache distributedCache, IArticleRepository articleRepository)
+        public ArticleCacheRepository(ICacheService cacheService, IArticleRepository articleRepository)
         {
-            _distributedCache = distributedCache;
+            _cacheService = cacheService;
             _articleRepository = articleRepository;
         }
 
         public async Task<Article> GetByIdAsync(int articleId)
         {
             string cacheKey = ArticleCacheKeys.GetKey(articleId);
-            var article = await _distributedCache.GetAsync<Article>(cacheKey);
+            var article = await _cacheService.GetAsync<Article>(cacheKey);
             if (article == null)
             {
                 article = await _articleRepository.GetByIdAsync(articleId);
                 Throw.Exception.IfNull(article, "Article", "No Article Found");
-                await _distributedCache.SetAsync(cacheKey, article);
+                await _cacheService.SetAsync(cacheKey, article);
             }
             return article;
         }
@@ -38,11 +39,11 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
         public async Task<List<Article>> GetCachedListAsync(string includeProperties = "")
         {
             string cacheKey = ArticleCacheKeys.ListKey;
-            var articleList = await _distributedCache.GetAsync<List<Article>>(cacheKey);
+            var articleList = await _cacheService.GetAsync<List<Article>>(cacheKey);
             if (articleList == null)
             {
                 articleList = await _articleRepository.GetListAsync(includeProperties);
-                await _distributedCache.SetAsync(cacheKey, articleList);
+                await _cacheService.SetAsync(cacheKey, articleList);
             }
             return articleList;
         }

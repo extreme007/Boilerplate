@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
@@ -13,24 +14,24 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
   
     public class ArticleCategoryCacheRepository : IArticleCategoryCacheRepository
     {
-        private readonly IDistributedCache _distributedCache;
+        private readonly ICacheService _cacheService;
         private readonly IArticleCategoryRepository _articleCategoryRepository;
 
-        public ArticleCategoryCacheRepository(IDistributedCache distributedCache, IArticleCategoryRepository articleCategoryRepository)
+        public ArticleCategoryCacheRepository(ICacheService cacheService, IArticleCategoryRepository articleCategoryRepository)
         {
-            _distributedCache = distributedCache;
+            _cacheService = cacheService;
             _articleCategoryRepository = articleCategoryRepository;
         }
 
         public async Task<ArticleCategory> GetByIdAsync(int articleCategoryId)
         {
             string cacheKey = ArticleCategoryCacheKeys.GetKey(articleCategoryId);
-            var articleCategory = await _distributedCache.GetAsync<ArticleCategory>(cacheKey);
+            var articleCategory = await _cacheService.GetAsync<ArticleCategory>(cacheKey);
             if (articleCategory == null)
             {
                 articleCategory = await _articleCategoryRepository.GetByIdAsync(articleCategoryId);
                 Throw.Exception.IfNull(articleCategory, "ArticleCategory", "No ArticleCategory Found");
-                await _distributedCache.SetAsync(cacheKey, articleCategory);
+                await _cacheService.SetAsync(cacheKey, articleCategory);
             }
             return articleCategory;
         }
@@ -38,11 +39,11 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
         public async Task<List<ArticleCategory>> GetCachedListAsync()
         {
             string cacheKey = ArticleCategoryCacheKeys.ListKey;
-            var articleCategoryList = await _distributedCache.GetAsync<List<ArticleCategory>>(cacheKey);
+            var articleCategoryList = await _cacheService.GetAsync<List<ArticleCategory>>(cacheKey);
             if (articleCategoryList == null)
             {
                 articleCategoryList = await _articleCategoryRepository.GetListAsync();
-                await _distributedCache.SetAsync(cacheKey, articleCategoryList);
+                await _cacheService.SetAsync(cacheKey, articleCategoryList);
             }
             return articleCategoryList;
         }

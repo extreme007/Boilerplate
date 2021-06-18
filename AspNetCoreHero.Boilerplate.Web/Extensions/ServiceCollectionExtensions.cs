@@ -94,6 +94,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.AddTransient<IMailService, SMTPMailService>();
             services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
+            services.AddTransient<ICacheService, CacheService>();
         }
     }
 }

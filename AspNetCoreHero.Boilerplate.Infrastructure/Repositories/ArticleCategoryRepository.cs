@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
@@ -11,11 +12,11 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
     public class ArticleCategoryRepository : IArticleCategoryRepository
     {
         private readonly IRepositoryAsync<ArticleCategory> _repository;
-        private readonly IDistributedCache _distributedCache;
+        private readonly ICacheService _cacheService;
 
-        public ArticleCategoryRepository(IDistributedCache distributedCache, IRepositoryAsync<ArticleCategory> repository)
+        public ArticleCategoryRepository(ICacheService cacheService, IRepositoryAsync<ArticleCategory> repository)
         {
-            _distributedCache = distributedCache;
+            _cacheService = cacheService;
             _repository = repository;
         }
 
@@ -24,8 +25,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
         public async Task DeleteAsync(ArticleCategory articleCategory)
         {
             await _repository.DeleteAsync(articleCategory);
-            await _distributedCache.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
-            await _distributedCache.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.GetKey(articleCategory.Id));
+            await _cacheService.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
+            await _cacheService.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.GetKey(articleCategory.Id));
         }
 
         public async Task<ArticleCategory> GetByIdAsync(int articleCategoryId)
@@ -41,15 +42,15 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
         public async Task<int> InsertAsync(ArticleCategory articleCategory)
         {
             await _repository.AddAsync(articleCategory);
-            await _distributedCache.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
+            await _cacheService.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
             return articleCategory.Id;
         }
 
         public async Task UpdateAsync(ArticleCategory articleCategory)
         {
             await _repository.UpdateAsync(articleCategory);
-            await _distributedCache.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
-            await _distributedCache.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.GetKey(articleCategory.Id));
+            await _cacheService.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.ListKey);
+            await _cacheService.RemoveAsync(CacheKeys.ArticleCategoryCacheKeys.GetKey(articleCategory.Id));
         }
     }
 }
