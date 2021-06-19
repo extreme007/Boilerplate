@@ -1,28 +1,44 @@
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/css/custom.min.css",
     "inputFiles": [
-      "wwwroot/css/style.css",
-      "wwwroot/css/plugin.css",
-      "wwwroot/css/font-awesome.min.css",
       "wwwroot/css/custom.css"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    }
+    ]
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/css/plugin.min.css",
     "inputFiles": [
-      "wwwroot/js/jquery-3.3.1.min.js",
-      "wwwroot/js/bootstrap.min.js",
-      "wwwroot/js/plugin.js",
+      "wwwroot/css/plugin.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/font-awesome.min.css",
+    "inputFiles": [
+      "wwwroot/css/font-awesome.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/plugin.min.js",
+    "inputFiles": [
+      "wwwroot/js/plugin.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/main.min.js",
+    "inputFiles": [
       "wwwroot/js/main.js"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    }
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom-mixitup.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom-mixitup.js"
+    ]
   }
 ]
