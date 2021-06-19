@@ -2,6 +2,8 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         private IMapper _mapperInstance;
         private INotyfService _notifyInstance;
         private IConfiguration _configurationInstance;
+        private IWebHostEnvironment _envInstance;
+        private IHttpContextAccessor _httpContextAccessorInstance;
         protected INotyfService _notify => _notifyInstance ??= HttpContext.RequestServices.GetService<INotyfService>();
 
         protected IMediator _mediator => _mediatorInstance ??= HttpContext.RequestServices.GetService<IMediator>();
@@ -24,6 +28,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
         protected IViewRenderService _viewRenderer => _viewRenderInstance ??= HttpContext.RequestServices.GetService<IViewRenderService>();
         protected IMapper _mapper => _mapperInstance ??= HttpContext.RequestServices.GetService<IMapper>();
         protected IConfiguration _configuration => _configurationInstance ??= HttpContext.RequestServices.GetService<IConfiguration>();
+        protected IWebHostEnvironment _env => _envInstance ??= HttpContext.RequestServices.GetService<IWebHostEnvironment>();
+        protected IHttpContextAccessor _httpContextAccessor => _httpContextAccessorInstance ??= HttpContext.RequestServices.GetService<IHttpContextAccessor>();
 
         private string GenerateIPAddress()
         {

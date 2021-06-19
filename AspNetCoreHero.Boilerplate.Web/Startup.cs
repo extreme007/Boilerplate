@@ -16,11 +16,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -39,6 +42,7 @@ namespace AspNetCoreHero.Boilerplate.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             //services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddNotyf(o =>
@@ -94,6 +98,39 @@ namespace AspNetCoreHero.Boilerplate.Web
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                //options.Providers.Add<CustomCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml" });
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+            services.AddMiniProfiler(options =>
+            {
+                options.RouteBasePath = "/profiler";
+                options.ColorScheme = StackExchange.Profiling.ColorScheme.Light;
+                options.PopupRenderPosition = StackExchange.Profiling.RenderPosition.BottomLeft;
+                options.PopupShowTimeWithChildren = true;
+                options.PopupShowTrivial = true;
+                options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
+            }
+               
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,14 +146,36 @@ namespace AspNetCoreHero.Boilerplate.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseResponseCaching();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(10)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
+
+                await next();
+            });
+
             app.UseNotyf();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseMultiLingualFeature();
             app.UseRouting();
+
+
+
+            app.UseMiniProfiler();
+
             app.UseAuthentication();
-  
+
             app.UseAuthorization();
             app.UseHangfireDashboard();
             app.UseSession();
@@ -128,14 +187,8 @@ namespace AspNetCoreHero.Boilerplate.Web
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
                 //endpoints.MapControllerRoute(
-                // name: "areaRoute",
-                //pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-
-                //endpoints.MapControllerRoute("category", "{slug}", new { Controllers = "Category", Actions = "Index" });
-                //endpoints.MapControllerRoute("loadMore", "LoadMore/{slug}", new { Controllers = "Category", Actions = "GetDataArticle" });
-               // endpoints.MapControllerRoute("article", "{categorySlug}/{slug}-{id}", new { Controllers = "Article", Actions = "Index" });
-
+                //name: "sitemap.xml",
+                //pattern: "{controller=Sitemap}/{action=SitemapAsync}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
@@ -144,7 +197,8 @@ namespace AspNetCoreHero.Boilerplate.Web
                 endpoints.MapRazorPages();
                 endpoints.MapHangfireDashboard();
 
-                endpoints.MapFallback(context => {
+                endpoints.MapFallback(context =>
+                {
                     context.Response.Redirect("/Error");
                     return Task.CompletedTask;
                 });
