@@ -11,7 +11,7 @@
         </div>
         @if (Model != null && Model.Count() > 0)
         {
-            @foreach (var item in Model.Batch(3))
+            @foreach (var item in Model.Take(6).Batch(3))
             {
                 <div class="row">
                     @foreach (var subItem in item)

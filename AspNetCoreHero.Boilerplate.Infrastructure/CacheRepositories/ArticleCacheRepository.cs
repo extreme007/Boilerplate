@@ -6,6 +6,7 @@ using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
 using AspNetCoreHero.ThrowR;
 using Microsoft.Extensions.Caching.Distributed;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,17 +25,19 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             _articleRepository = articleRepository;
         }
 
-        public async Task<List<Article>> GetByGroupCategoryIdAsync(int groupCategoryId,string includeProperties = "")
+        public async Task<List<Article>> GetByGroupCategoryIdAsync(int groupCategoryId,int categoryId, string includeProperties = "")
         {
-            string cacheKey = ArticleCacheKeys.ListKeyByGroupCategoryId(groupCategoryId);
-            var articleList = await _cacheService.GetAsync<List<Article>>(cacheKey);
-            if (articleList == null)
+            string cacheKey = ArticleCacheKeys.ListKeyByGroupCategoryId(groupCategoryId,categoryId);
+            var articleGroupCategoryList = await _cacheService.GetAsync<List<Article>>(cacheKey);
+            if (articleGroupCategoryList == null)
             {
                 var listResult = await GetCachedListAsync(includeProperties);
-                articleList = listResult.Where(x => x.GroupCategoryId == groupCategoryId).ToList();
-                await _cacheService.SetAsync(cacheKey, articleList);
+                Func<Article, bool> expressionWhere = x => x.IsPublished == true && x.ThumbImage != null && x.GroupCategoryId == groupCategoryId && x.CategoryId == categoryId;
+                articleGroupCategoryList = listResult.Where(expressionWhere).OrderByDescending(x => x.PostedDatetime).ToList();
+
+                await _cacheService.SetAsync(cacheKey, articleGroupCategoryList);
             }
-            return articleList;
+            return articleGroupCategoryList;
         }
 
         public async Task<Article> GetByIdAsync(int articleId)

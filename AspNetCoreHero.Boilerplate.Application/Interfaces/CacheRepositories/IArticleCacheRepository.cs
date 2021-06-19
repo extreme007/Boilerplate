@@ -9,6 +9,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories
         Task<List<Article>> GetCachedListAsync(string includeProperties = "");
 
         Task<Article> GetByIdAsync(int articleId);
-        Task<List<Article>> GetByGroupCategoryIdAsync(int groupCategoryId, string includeProperties = "");
+        Task<List<Article>> GetByGroupCategoryIdAsync(int groupCategoryId,int categoryId, string includeProperties = "");
     }
 }

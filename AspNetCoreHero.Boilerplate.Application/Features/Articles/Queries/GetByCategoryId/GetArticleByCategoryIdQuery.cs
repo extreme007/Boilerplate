@@ -44,10 +44,13 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Articles.Queries.GetBy
 
         public async Task<PaginatedResult<GetAllArticleCachedResponse>> Handle(GetArticleByCategoryIdQuery query, CancellationToken cancellationToken)
         {
-            var article = await _articleCache.GetCachedListAsync("ArticleCategory");
-            
-            Func<Article, bool> expressionWhere = x => x.IsPublished == true && x.ThumbImage != null && x.GroupCategoryId == query.GroupCategoryId && x.CategoryId == query.CategoryId;
-            var listFilter = article.Where(expressionWhere).OrderByDescending(x=>x.PostedDatetime);
+            //string cacheKey = ArticleCacheKeys.ListKey;
+            //var articleList = await _cacheService.GetAsync<List<Article>>(cacheKey);
+
+            //var listArticle = await _articleCache.GetCachedListAsync("ArticleCategory");
+            //Func<Article, bool> expressionWhere = x => x.IsPublished == true && x.ThumbImage != null && x.GroupCategoryId == query.GroupCategoryId && x.CategoryId == query.CategoryId;
+            //var listFilter = listArticle.Where(expressionWhere).OrderByDescending(x=>x.PostedDatetime);
+            var listFilter = await _articleCache.GetByGroupCategoryIdAsync(query.GroupCategoryId.Value, query.CategoryId, "ArticleCategory");
             var total = listFilter.Count();
             var listResult = listFilter.Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize);
             var mappedArticle = _mapper.Map<List<GetAllArticleCachedResponse>>(listResult);
