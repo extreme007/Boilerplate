@@ -361,8 +361,16 @@ $(document).on('click', 'a.page-scroll', function(event) {
   event.preventDefault();
 });
 
+    //$(document).ready(function () {
+    //    debugger
+    //    //$(".gsc-input-box").css("padding-top", "unset");
+    //});
 
-
+   
+    //$("#searchbtn").click(function () {
+    //    debugger
+    //    $("#searchbar1").toggle();
+    //});
 }(jQuery));
 
 

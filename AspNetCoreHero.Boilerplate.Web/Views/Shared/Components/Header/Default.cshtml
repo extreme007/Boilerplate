@@ -9,20 +9,23 @@
             </div>
             <ul class="header-social-links pull-right">
                 @*<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>*@
-                <li> <a id="searchtoggl" class="searchtoggle"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>*@
+
+                <li> <a id="searchtogglNew" class="searchtoggle"><i class="fa fa-search" aria-hidden="true"></i></a></li>
             </ul>
 
 
-            <div id="searchbar" class="searchbar">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="search" placeholder="Search Now">
-                    <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-                </div>
-            </form>
-        </div>
+            <div id="searchbarNew" class="searchbarNew">
+                    <div class="gcse-searchbox-only" data-resultsUrl="https://tintin247.com/tim-kiem" enableAutoComplete="true"></div>
+                @*<form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search" placeholder="Search Now">
+                            <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                        </div>
+                    </form>*@
+              
+            </div>
         </div>
     </div>
     @(await Component.InvokeAsync<NavigationBarViewComponent>())
@@ -33,3 +36,7 @@
 
 
 </header>
+
+@section Scripts{
+
+}

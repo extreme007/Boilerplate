@@ -5,13 +5,13 @@
 
 }
 
-<section class="top_trending">
-    <div class="container">
-        <div class="section-title">
-            <h2>@ViewData["Title"].ToString()</h2>
-        </div>
-        @if (Model != null && Model.Count() > 0)
-        {
+@if (Model != null && Model.Count() > 0)
+{
+    <section class="top_trending">
+        <div class="container">
+            <div class="section-title">
+                <h2>@ViewData["Title"].ToString()</h2>
+            </div>
             @foreach (var item in Model.Batch(2))
             {
                 <div class="row">
@@ -24,6 +24,6 @@
 
                 </div>
             }
-        }
-    </div>
-</section>
+        </div>
+    </section>
+}

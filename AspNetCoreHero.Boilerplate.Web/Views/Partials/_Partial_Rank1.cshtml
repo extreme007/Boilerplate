@@ -2,60 +2,63 @@
 @using AspNetCoreHero.Boilerplate.Web.Extensions
 @model IEnumerable<ArticleViewModel>
 @{
-    var top1 = Model.Where(x=>x.Image != null).FirstOrDefault();
-    var top2 = Model.Where(x=>x.Id != top1.Id);
+    var top1 = Model.Where(x => x.Image != null).FirstOrDefault();
+    var top2 = Model.Where(x => x.Id != top1.Id);
 }
 
-<section class="top_trending">
-    <div class="container">
-        @*<div class="section-title">
-                <h2>Tin nóng</h2>
-            </div>*@
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <div class="item-large">
-                    <div class="item-large-image">
-                        <img alt="@top1.Title" src="@top1.Image">
-                        <div class="image-overlay"></div>
-                    </div>
-
-                    <div class="item-large-content">
-                        <h3><a href="@top1.FullSlug">@top1.Title</a></h3>
-                        <p>@top1.Description</p>
-                        <div class="author-detail">
-                            @*<p><a href="#"><i class="icon-profile-male"></i> @top1.Author</a></p>*@
-                            <p><i class="icon-clock"></i> @top1.PostedDatetimeString</p>
-                            <p><a href="#"><i class="icon-chat"></i> @top1.CommentCount</a></p>
-                        </div>
-                        @*<div class="post-tag" style="margin-top:10px;">
-                            <a href="#" class="tag-gold tag">@top1.SourceName</a>
-                        </div>*@
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xs-12">
-                @foreach (var item in top2)
-                {
-                    <div class="item-small">
-                        <div class="item-small-image">
-                            <img alt="Image" src="@item.ThumbImage">
+@if (top1 != null && top2 != null)
+{
+    <section class="top_trending">
+        <div class="container">
+            @*<div class="section-title">
+                    <h2>Tin nóng</h2>
+                </div>*@
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="item-large">
+                        <div class="item-large-image">
+                            <img alt="@top1.Title" src="@top1.Image">
                             <div class="image-overlay"></div>
                         </div>
-                        <div class="item-small-content">
-                            <h4><a href="@item.FullSlug">@item.Title</a></h4>
+
+                        <div class="item-large-content">
+                            <h3><a href="@top1.FullSlug">@top1.Title</a></h3>
+                            <p>@top1.Description</p>
                             <div class="author-detail">
-                                @*<p><a href="#"><i class="icon-profile-male"></i> @item.Author</a></p>*@
-                                <p><i class="icon-clock"></i> @item.PostedDatetimeString</p>
-                                <p><a href="#"><i class="icon-chat"></i> @item.CommentCount</a></p>
+                                @*<p><a href="#"><i class="icon-profile-male"></i> @top1.Author</a></p>*@
+                                <p><i class="icon-clock"></i> @top1.PostedDatetimeString</p>
+                                <p><a href="#"><i class="icon-chat"></i> @top1.CommentCount</a></p>
                             </div>
-                            @*<div class="post-tag">
-                                <a href="#" class="tag-blue tag">@item.SourceName</a>
-                            </div>*@
+                            @*<div class="post-tag" style="margin-top:10px;">
+                                    <a href="#" class="tag-gold tag">@top1.SourceName</a>
+                                </div>*@
                         </div>
                     </div>
-                }
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    @foreach (var item in top2)
+                    {
+                        <div class="item-small">
+                            <div class="item-small-image">
+                                <img alt="Image" src="@item.ThumbImage">
+                                <div class="image-overlay"></div>
+                            </div>
+                            <div class="item-small-content">
+                                <h4><a href="@item.FullSlug">@item.Title</a></h4>
+                                <div class="author-detail">
+                                    @*<p><a href="#"><i class="icon-profile-male"></i> @item.Author</a></p>*@
+                                    <p><i class="icon-clock"></i> @item.PostedDatetimeString</p>
+                                    <p><a href="#"><i class="icon-chat"></i> @item.CommentCount</a></p>
+                                </div>
+                                @*<div class="post-tag">
+                                        <a href="#" class="tag-blue tag">@item.SourceName</a>
+                                    </div>*@
+                            </div>
+                        </div>
+                    }
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}

@@ -22,20 +22,26 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
             var model = new HomeViewModel();
             var response = await _mediator.Send(new GetAllArticleCachedQuery());
             var responseCategory = await _mediator.Send(new GetAllArticleCategoryCachedQuery());
-           
+
             //var response = await _mediator.Send(new GetAllArticlesNoCacheQuery());
             if (response.Succeeded && responseCategory.Succeeded)
             {
                 var data = _mapper.Map<List<ArticleViewModel>>(response.Data);
-                model.TopHot = data.Where(x=>x.IsHot == true && x.IsRank1 == false).Take(10).ToList();
+                model.TopHot = data.Where(x => x.IsHot == true && x.IsRank1 == false).Take(10).ToList();
                 model.TopNew = data.Where(x => x.IsHot == false && x.IsRank1 == false).Take(10).ToList();
-                model.Rank1 =  data.Where(x => x.IsRank1 == true).Take(4).ToList();
+                model.Rank1 = data.Where(x => x.IsRank1 == true).Take(4).ToList();
                 model.BreakingNews = data.Take(10).ToList();
-                model.DataByCategory = data.GroupBy(x => x.GroupCategoryId).ToDictionary(x => x.Key, x=>x.ToList());
+                model.DataByCategory = data.GroupBy(x => x.GroupCategoryId).ToDictionary(x => x.Key, x => x.ToList());
                 model.ListCategory = _mapper.Map<List<NavigationViewModel>>(responseCategory.Data);
-            }    
+            }
 
             return View(model);
+        }
+        [Route("tim-kiem")]
+        public async Task<IActionResult> Search(string q)
+        {
+            ViewBag.Query = q;
+            return View();
         }
     }
 }

@@ -25,7 +25,7 @@
 @await Html.PartialAsync("~/Views/Partials/_Partial_Top.cshtml", Model.TopNew, new ViewDataDictionary(ViewData) { { "Title", "Tin Mới" } })
 @*@await Html.PartialAsync("~/Views/Partials/_Partial_TopNew.cshtml", Model.TopNew)*@
 
-<section class="buy-now">
+@*<section class="buy-now">
     <div class="container">
         <div class="stock-slider">
             <div class="stock-slider-item">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="sectionoverlay"></div>
-</section>
+</section>*@
 
 @foreach (var item in listCategory)
 {

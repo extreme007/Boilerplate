@@ -12,7 +12,8 @@
     <partial name="_Styles" />
 </head>
 <body>
-    <mini-profiler position="@RenderPosition.Right" max-traces="5" />
+    <script async src="https://cse.google.com/cse.js?cx=00d9432828dc6db46"></script>
+    @*<mini-profiler position="@RenderPosition.Right" max-traces="5" />*@
     <div class="loader" style="display:none;">
         <img src="~/images/Eclipse.gif" class="iconLoading" />
     </div>
@@ -26,7 +27,30 @@
 
     <partial name="_GoogleAnalytics" />
     <partial name="_Scripts" />
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchbarNew").hide();
+            $("#searchtogglNew").click(function () {
+                $(".gsc-input-box").css("padding", "0");
+                $(".gsc-input").css("padding-right", "0");
+                $(".gsc-search-button").css("margin-left", "0");
+                $(".gsc-search-button-v2").css("height", "35px");
+                $(".gsc-search-button-v2").css("background-color", "#f75656");
+                $(".gsc-search-button-v2").css("border", "unset");
+                $("#gs_tti50 > input").css("background", "unset");
+                $("#searchbarNew").toggle();
+            });
+        })
+        window.onload = function () {
+            $('#gsc-i-id1').attr("placeholder", "Tìm kiếm tin tức");
+            //$('#gsc-i-id1').focusout(function () {
+            //    setTimeout(function () {
+            //        $('#gsc-i-id1').css("background", "unset");
+            //       $('#gsc-i-id1').attr("placeholder", "Tìm kiếm tin tức");
+            //    }, 0);
+            //});
+        };
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

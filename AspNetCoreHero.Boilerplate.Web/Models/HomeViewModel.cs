@@ -7,12 +7,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Models
 {
     public class HomeViewModel
     {
-        public List<ArticleViewModel> TopHot { get; set; }
-        public List<ArticleViewModel> TopNew { get; set; }
-        public List<ArticleViewModel> Rank1 { get; set; }
-        public List<ArticleViewModel> BreakingNews { get; set; }
-        public Dictionary<int?,List<ArticleViewModel>> DataByCategory { get; set; }
-        public List<NavigationViewModel> ListCategory { get; set; }
+        public List<ArticleViewModel> TopHot { get; set; } = new List<ArticleViewModel>();
+        public List<ArticleViewModel> TopNew { get; set; } = new List<ArticleViewModel>();
+        public List<ArticleViewModel> Rank1 { get; set; } = new List<ArticleViewModel>();
+        public List<ArticleViewModel> BreakingNews { get; set; } = new List<ArticleViewModel>();
+        public Dictionary<int?, List<ArticleViewModel>> DataByCategory { get; set; } = new Dictionary<int?, List<ArticleViewModel>>();
+        public List<NavigationViewModel> ListCategory { get; set; } = new List<NavigationViewModel>();
         //public List<ArticleViewModel> TheGioi { get; set; }
         //public List<ArticleViewModel> TheThao { get; set; }
         //public List<ArticleViewModel> XaHoi { get; set; }

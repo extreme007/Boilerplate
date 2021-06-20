@@ -47,7 +47,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
 
             if (url.Modified.HasValue)
             {
-                itemElement.Add(new XElement(NS + "lastmod", url.Modified.Value.ToString("yyyy-MM-ddTHH:mm:ss.f") + "+00:00"));
+                itemElement.Add(new XElement(NS + "lastmod", url.Modified.Value.ToString("yyyy-MM-ddTHH:mm:ss.f") + "+07:00"));
             }
 
             if (url.ChangeFrequency.HasValue)

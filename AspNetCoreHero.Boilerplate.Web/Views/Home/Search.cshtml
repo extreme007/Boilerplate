@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_Layout";
+}
+@{ 
+    string query = ViewBag.Query as string;
+}
+<div class="searchContent">
+    <div class="container">
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-12">
+                <h3>Kết quả tìm kiếm với từ khóa "@query"</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="gcse-searchresults-only" enableAutoComplete="true"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            debugger
+            $(".gsc-adBlock").hide();
+            $("#adBlock").hide();
+        })
+
+    </script>*@
+}
