@@ -210,7 +210,7 @@ img {
   height:auto;
 }
 section{
-  padding: 50px 0;
+  padding: 20px 0;
 }
 label {
   display: inline-block;
@@ -1383,7 +1383,7 @@ a.searchtoggle{
 .breaking-news{
   padding: 0;
   position: relative;
-  margin-top: 54px;
+  margin-top: 20px;
   display: inline-block;
   width: 100%;
 }
@@ -1936,9 +1936,10 @@ footer .header-social-links a{
 /* Detail Page */
 section.item-content{
   position: relative;
+  padding:0;
 }
 section.page-cover{
-  padding: 10px 0 0 0;
+  padding: 20px 0 0 0;
 }
 .cover-content{
   position: relative;
@@ -2306,7 +2307,7 @@ ul.reply{
 
 
 .post-outer{
-  margin-top: 40px;
+  margin-top: 15px;
   box-shadow: 0 0 15px #cccccc57;
   padding: 20px;
   border: 1px solid #f1f1f1;
@@ -4439,7 +4440,7 @@ p.lost_password{
     padding-top: 20px;
   }
   .breaking-news{
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .header-menu .col-xs-3, .header-menu .col-xs-9{
     width: 50%;

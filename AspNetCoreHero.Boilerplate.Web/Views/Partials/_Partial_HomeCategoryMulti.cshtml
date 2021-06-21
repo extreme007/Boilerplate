@@ -23,40 +23,15 @@
             @foreach (var item in dataGroup)
             {
                 var firstItem = item.FirstOrDefault(x => x.Image != null);
+                var listSubitem = item.Where(x => x.Id != firstItem.Id).Take(3);
                 <div class="row mix @item.ToList().FirstOrDefault().ArticleCategory.Slug">
                     <div class="col-sm-6" style="margin-bottom:20px;">
-                        <div class="item-large">
-                            <div class="item-large-image">
-                                <img alt="@firstItem.Title" src="@firstItem.Image">
-                                <div class="image-overlay"></div>
-                            </div>
-                            <div class="image-overlay"></div>
-                            <div class="item-large-content">
-                                <h3><a href="@firstItem.FullSlug">@firstItem.Title</a></h3>
-                                <p>@firstItem.Description</p>
-                                <div class="author-detail">
-                                    <p><i class="icon-clock"></i> @firstItem.PostedDatetimeString</p>
-                                    <p><a href="#"><i class="icon-chat"></i> @firstItem.CommentCount</a></p>
-                                </div>
-                            </div>
-                        </div>
+                         @await Html.PartialAsync("~/Views/Partials/_Partial_LargeImage.cshtml", firstItem)
                     </div>
                     <div class="col-sm-6">
-                        @foreach (var subItem in item.Where(x => x.Id != firstItem.Id).Take(3))
+                        @foreach (var subItem in listSubitem)
                         {
-                            <div class="item-small">
-                                <div class="item-small-image">
-                                    <img alt="@subItem.Title" src="@subItem.ThumbImage">
-                                    <div class="image-overlay"></div>
-                                </div>
-                                <div class="item-small-content">
-                                    <h4><a href="@subItem.FullSlug">@subItem.Title</a></h4>
-                                    <div class="author-detail">
-                                        <p><i class="icon-clock"></i> @subItem.PostedDatetimeString</p>
-                                        <p><a href="#"><i class="icon-chat"></i> @subItem.CommentCount</a></p>
-                                    </div>
-                                </div>
-                            </div>
+                            @await Html.PartialAsync("~/Views/Partials/_Partial_HomeArticleItem12.cshtml", subItem)
                         }
 
                     </div>

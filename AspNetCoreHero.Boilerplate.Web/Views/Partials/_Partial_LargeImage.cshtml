@@ -1,0 +1,20 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Models
+@model ArticleViewModel
+@{
+
+}
+<div class="item-large">
+    <div class="item-large-image">
+        <img alt="@Model.Title" src="@Model.Image">
+        <div class="image-overlay"></div>
+    </div>
+    <div class="image-overlay"></div>
+    <div class="item-large-content">
+        <h3><a href="@Model.FullSlug">@Model.Title</a></h3>
+        <p>@Model.Description</p>
+        <div class="author-detail">
+            <p><i class="icon-clock"></i> @Model.PostedDatetimeString</p>
+            <p><a href="#"><i class="icon-chat"></i> @Model.CommentCount</a></p>
+        </div>
+    </div>
+</div>

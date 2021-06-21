@@ -12,7 +12,6 @@
 
 @await Html.PartialAsync("~/Views/Partials/_Partial_BreakingNews.cshtml", Model.BreakingNews)
 
-@*@await Html.PartialAsync("~/Views/Partials/_Partial_TopHot.cshtml", Model.TopHot)*@
 @await Html.PartialAsync("~/Views/Partials/_Partial_Top.cshtml", Model.TopHot, new ViewDataDictionary(ViewData) { { "Title", "Tin Nóng" } })
 
 @*<div class="ad1">
@@ -23,7 +22,6 @@
         </div>
     </div>*@
 @await Html.PartialAsync("~/Views/Partials/_Partial_Top.cshtml", Model.TopNew, new ViewDataDictionary(ViewData) { { "Title", "Tin Mới" } })
-@*@await Html.PartialAsync("~/Views/Partials/_Partial_TopNew.cshtml", Model.TopNew)*@
 
 @*<section class="buy-now">
     <div class="container">

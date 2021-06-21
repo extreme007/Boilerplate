@@ -10,7 +10,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
     [AllowAnonymous]
     public class ErrorController :  Controller
     {
-        [Route("Error")]
+        [Route("404.html")]
         public IActionResult Index()
         {
             return View();

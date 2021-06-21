@@ -33,30 +33,19 @@
 
 .bot-source {
     display: flex;
-    border-top: 1px solid #f1f1f1;
-    border-bottom: 1px solid #f1f1f1;
-    margin-bottom:30px;
-    padding:20px 0;
-    /*font-size:13px !important;*/
-}
-
-.bot-source {
-    /*    display: flex;
-    border-top: 1px solid #f1f1f1;
     border-bottom: 1px solid #f1f1f1;
     margin-bottom: 30px;
-    padding: 20px 0;*/
+    padding: 0 0 10px 0;
+    /*font-size:13px !important;*/
 
     clear: both;
-    margin-bottom: 30px;
     font-size: 1.4rem;
-    line-height: 1.8rem;
-    font-weight: 600;
-    /*padding: 20px 0;*/
+    line-height: 1.8rem
 }
 
 .bot-source >a .name {
     color: #333;
+    font-weight:600;
 }
 
 .bot-source >a {
@@ -89,12 +78,20 @@
     overflow: hidden;
 }
 
+.item-detail {
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom:15px;
+}
+
 .item-detail .body-text {
     font-size: 18px;
     line-height: 1.7;
     margin-bottom: 25px;
 }
 
+.item-detail .description {
+    font-weight: 700;
+}
 
 /*.sub-menu li.active {
     color: #f75656;
