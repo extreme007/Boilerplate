@@ -64,13 +64,18 @@ namespace AspNetCoreHero.Boilerplate.Web
             });
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            //services.AddDistributedMemoryCache();
-
-            // Register the RedisCache service
-            services.AddStackExchangeRedisCache(options =>
+            if (_configuration.GetValue<bool>("UseRedisCache"))
             {
-                options.Configuration = _configuration.GetSection("Redis")["ConnectionString"];
-            });
+                // Register the RedisCache service
+                services.AddStackExchangeRedisCache(options =>
+                {
+                    options.Configuration = _configuration.GetSection("Redis")["ConnectionString"];
+                });
+            }
+            else
+            {
+                services.AddDistributedMemoryCache();
+            }
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
@@ -114,7 +119,6 @@ namespace AspNetCoreHero.Boilerplate.Web
                 options.Level = CompressionLevel.Fastest;
             });
 
-
             services.Configure<GzipCompressionProviderOptions>(options =>
             {
                 options.Level = CompressionLevel.Fastest;
@@ -129,7 +133,6 @@ namespace AspNetCoreHero.Boilerplate.Web
                 options.PopupShowTrivial = true;
                 options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
             }
-               
             );
         }
 
@@ -169,13 +172,8 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseCookiePolicy();
             app.UseMultiLingualFeature();
             app.UseRouting();
-
-
-
-            app.UseMiniProfiler();
-
+            //app.UseMiniProfiler();
             app.UseAuthentication();
-
             app.UseAuthorization();
             app.UseHangfireDashboard();
             app.UseSession();
@@ -185,10 +183,6 @@ namespace AspNetCoreHero.Boilerplate.Web
                    name: "Admin",
                    areaName: "Admin",
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
-
-                //endpoints.MapControllerRoute(
-                //name: "sitemap.xml",
-                //pattern: "{controller=Sitemap}/{action=SitemapAsync}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
